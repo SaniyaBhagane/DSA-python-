@@ -43,7 +43,25 @@
 # 1295. Find Numbers with Even Number of Digits
 # https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 
-# Approach => Convert number to string and check length of string is even or not.
+
+# Approach 1 => Count digits by repeatedly dividing number by 10 until it becomes 0.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N * M), where N is the number of elements in the input array and M is the average number of digits in each number.
+# Space Complexity: O(1), as we are using only a constant amount of extra space 
+# class Solution:
+#     def findNumbers(self, nums: List[int]) -> int:
+#         count = 0
+#         for i in nums:
+#             digit_count = 0
+#             num = i
+#             while num > 0:
+#                 num //= 10
+#                 digit_count += 1
+#             if digit_count % 2 == 0:
+#                 count += 1
+#         return count
+
+# Approach 2 => Convert number to string and check length of string is even or not.
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N * M), where N is the number of elements in the input array and M is the average number of digits in each number.
 # Space Complexity: O(1), as we are using only a constant amount of extra space
@@ -55,7 +73,7 @@
 #                 count += 1
 #         return count
 
-# Approach 2 => For this problem: 2 digits: 10 to 99,4 digits: 1000 to 9999, 6 digits: 100000 (maximum allowed by constraints). Each number is checked against these ranges.If it falls into any of them, it must have an even number of digits.
+# Approach 3 => For this problem: 2 digits: 10 to 99,4 digits: 1000 to 9999, 6 digits: 100000 (maximum allowed by constraints). Each number is checked against these ranges.If it falls into any of them, it must have an even number of digits.
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.
 # Space Complexity: O(1), as we are using only a constant amount of extra space
@@ -69,7 +87,7 @@
 #                 counter += 1
 #         return counter
 
-# Approach 3 => Using logarithm to count digits digits = floor(log10(num)) + 1 
+# Approach 4 => Using logarithm to count digits digits = floor(log10(num)) + 1 
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.
 # Space Complexity: O(1), as we are using only a constant amount of extra space
@@ -82,3 +100,4 @@
 #             if digits % 2 == 0:
 #                 counter += 1
 #         return counter
+
