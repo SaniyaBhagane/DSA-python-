@@ -100,4 +100,57 @@
 #             if digits % 2 == 0:
 #                 counter += 1
 #         return counter
+# --------------------------------------------------------------------------
 
+# 724. Find Pivot Index
+# https://leetcode.com/problems/find-pivot-index/
+
+# Brute Force Approach => For each index, calculate left sum and right sum by iterating through the array. If they are equal, return that index.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N^2), where N is the number of elements in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def pivotIndex(self, nums: List[int]) -> int:
+#         n = len(nums)
+
+#         for i in range(n):
+#             leftSum = sum(nums[:i])
+#             rightSum = sum(nums[i+1:])
+
+#             if leftSum == rightSum:
+#                 return i
+
+#         return -1
+
+
+# Approach => Calculate total sum of array. In a loop keep track of left sum and right sum (right sum = total sum - left sum - current element). If at any index left sum equals right sum, return that index.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of elements in the input array.  
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def pivotIndex(self, nums: List[int]) -> int:
+#         left_sum = 0
+#         right_sum = sum(nums)
+#         for i in range(len(nums)):
+#             right_sum -= nums[i]
+#             if left_sum == right_sum: 
+#                 return i
+#             left_sum += nums[i]
+#         return -1              
+
+#Approach 2 => Using enumerate to loop through array while keeping track of index. 
+# (enumarate gives both index and value)
+# COMPLEXITY ANALYSIS:  
+# Time Complexity: O(N), where N is the number of elements in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def pivotIndex(self, nums: List[int]) -> int: 
+#         left_sum = 0
+#         right_sum = sum(nums)
+#         for index, value in enumerate(nums):
+#             right_sum -= value
+#             if left_sum == right_sum:
+#                 return index
+#             left_sum += value
+#         return -1
+# --------------------------------------------------------------------------
