@@ -7,7 +7,6 @@
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.  
 # Space Complexity: O(1), as we are using only a constant amount of extra space
-
 # class Solution:
 #     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
 #         count = 0
@@ -25,7 +24,6 @@
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.  
 # Space Complexity: O(1), as we are using only a constant amount of extra space
-
 # class Solution:
 #     def findMaxConsecutiveOnes(self, nums: List[int]) -> int:
 #         count = 0
@@ -42,7 +40,6 @@
 
 # 1295. Find Numbers with Even Number of Digits
 # https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
-
 
 # Approach 1 => Count digits by repeatedly dividing number by 10 until it becomes 0.
 # COMPLEXITY ANALYSIS:
@@ -77,7 +74,6 @@
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.
 # Space Complexity: O(1), as we are using only a constant amount of extra space
-
 # class Solution:
 #     def findNumbers(self, nums: List[int]) -> int:
 #         counter = 0
@@ -91,7 +87,6 @@
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.
 # Space Complexity: O(1), as we are using only a constant amount of extra space
-
 # class Solution:
 #     def findNumbers(self, nums: List[int]) -> int:
 #         counter = 0
@@ -100,6 +95,7 @@
 #             if digits % 2 == 0:
 #                 counter += 1
 #         return counter
+
 # --------------------------------------------------------------------------
 
 # 724. Find Pivot Index
@@ -153,4 +149,8 @@
 #                 return index
 #             left_sum += value
 #         return -1
-# --------------------------------------------------------------------------
+# 
+#--------------------------------------------------------------------------
+
+# 118. Pascal's Triangle
+# https://leetcode.com/problems/pascals-triangle/
