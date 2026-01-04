@@ -154,3 +154,64 @@
 
 # 118. Pascal's Triangle
 # https://leetcode.com/problems/pascals-triangle/
+
+# Approach => Start with first row as [1]. For each subsequent row, start and end with 1. Each middle element is sum of two elements above it from previous row.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N^2), where N is the number of rows in the triangle.  
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+
+# WORKFLOW: 1️. Start with the first row
+# Initialize the result with [[1]] since every Pascal’s Triangle begins with 1.
+# 2. Generate remaining rows
+# Repeat numRows - 1 times to build the rest of the triangle.
+# 3️. Pad previous row with zeros
+# Add 0 at the beginning and end of the last row to handle edge values easily.
+# 4. Create the new row
+# Add adjacent elements from the padded row to form the next row.
+# 5️. Store the row
+# Append the newly formed row to the result list.
+# 6️. Return the triangle
+# After all rows are generated, return the final list.
+
+# class Solution:
+#     def generate(self, numRows: int) -> List[List[int]]:
+#         res = [[1]]
+#         row = []
+#         for _ in range(numRows-1):
+#             dummyRow = [0] + res[-1] + [0]
+#             for i in range(len(res[-1]) + 1):
+#                 row.append(dummyRow[i] + dummyRow[i+1])
+#             res.append(row)
+#         return res
+
+# --------------------------------------------------------------------------
+
+# 344. Reverse String
+# https://leetcode.com/problems/reverse-string/ 
+
+# Approach => Use two pointers, one at start and one at end. Swap characters at these pointers and move them towards each other until they meet or cross.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of characters in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def reverseString(self, s: List[str]) -> None:
+#         i = 0
+#         j = len(s)-1
+#         while i < j:
+#             temp = s[j]
+#             s[j] = s[i]
+#             s[i] = temp
+#             i += 1
+#             j -= 1
+
+# class Solution:
+#     def reverseString(self, s: List[str]) -> None:
+#         i = 0
+#         j = len(s) - 1
+
+#         while i < j:
+#             s[i], s[j] = s[j], s[i]
+#             i += 1
+#             j -= 1
+
+# --------------------------------------------------------------------------
