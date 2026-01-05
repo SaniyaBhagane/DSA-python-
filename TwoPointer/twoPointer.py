@@ -61,3 +61,11 @@
 #         return True
 
 # -------------------------------------------------------------------------------------------------------------
+# 977. Squares of a Sorted Array
+# https://leetcode.com/problems/squares-of-a-sorted-array/
+# Approach => Use two pointers, one at the start and one at the end of the array. Compare absolute values of elements at both pointers, square the larger one and place it at the end of the result array. Move the corresponding pointer inward and repeat until all elements are processed.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of elements in the input array.
+# Space Complexity: O(N), as we are using an additional array to store the results
+# class Solution:
+#     def sortedSquares(self, nums: List[int]) -> List[int]:
