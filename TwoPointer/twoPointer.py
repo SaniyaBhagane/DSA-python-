@@ -61,6 +61,36 @@
 #         return True
 
 # -------------------------------------------------------------------------------------------------------------
+
+# 344. Reverse String
+# https://leetcode.com/problems/reverse-string/ 
+
+# Approach => Use two pointers, one at start and one at end. Swap characters at these pointers and move them towards each other until they meet or cross.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of characters in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def reverseString(self, s: List[str]) -> None:
+#         i = 0
+#         j = len(s)-1
+#         while i < j:
+#             temp = s[j]
+#             s[j] = s[i]
+#             s[i] = temp
+#             i += 1
+#             j -= 1
+
+# class Solution:
+#     def reverseString(self, s: List[str]) -> None:
+#         i = 0
+#         j = len(s) - 1
+
+#         while i < j:
+#             s[i], s[j] = s[j], s[i]
+#             i += 1
+#             j -= 1
+
+# --------------------------------------------------------------------------
 # 977. Squares of a Sorted Array
 # https://leetcode.com/problems/squares-of-a-sorted-array/
 # Approach => Use two pointers, one at the start and one at the end of the array. Compare absolute values of elements at both pointers, square the larger one and place it at the end of the result array. Move the corresponding pointer inward and repeat until all elements are processed.
