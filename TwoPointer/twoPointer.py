@@ -23,7 +23,7 @@
 # -------------------------------------------------------------------------------------------------------------
 # 125. VALID PALINDROME
 # https://leetcode.com/problems/valid-palindrome/
-# APPROACH: Two Pointer
+# APPROACH: We use two pointers starting from the beginning and end of the string and skips any non-alphanumeric characters. When both pointers point to valid characters, they are compared in a case-insensitive way. If all such character pairs match while moving inward, the string is a palindrome; otherwise, it returns False immediately.
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the length of the input string.
 # Space Complexity: O(1), as we are using only a constant amount of extra space
@@ -45,7 +45,7 @@
 #             right -= 1
 #         return True
 
-# APPROACH 2: Cleaned String with Two Pointer
+# APPROACH 2: We first cleans the string by removing non-alphanumeric characters and converting all letters to lowercase to ensure case-insensitive comparison. It then uses two pointers starting from both ends of the cleaned string to compare characters. If any pair does not match, it returns `False`; otherwise, if all pairs match, the string is confirmed to be a palindrome and returns `True`.
 # COMPLEXITY ANALYSIS:  
 # Time Complexity: O(N), where N is the length of the input string.
 # Space Complexity: O(N), as we are creating a new cleaned string
