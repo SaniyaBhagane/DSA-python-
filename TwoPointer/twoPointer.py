@@ -93,9 +93,44 @@
 # --------------------------------------------------------------------------
 # 977. Squares of a Sorted Array
 # https://leetcode.com/problems/squares-of-a-sorted-array/
-# Approach => Use two pointers, one at the start and one at the end of the array. Compare absolute values of elements at both pointers, square the larger one and place it at the end of the result array. Move the corresponding pointer inward and repeat until all elements are processed.
+# Approach => Two pointers compare squares from both ends of the array and append the larger square to a new list. Because the largest values are added first, the list is built in reverse (descending) order. The final list is reversed once to obtain the correctly sorted squares array.
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.
 # Space Complexity: O(N), as we are using an additional array to store the results
 # class Solution:
 #     def sortedSquares(self, nums: List[int]) -> List[int]:
+#         squared = []
+#         left,right = 0, len(nums) -1
+#         while left <= right:
+#             leftSquared = nums[left] * nums[left]
+#             rightSquared= nums[right] * nums[right]
+#             if leftSquared > rightSquared:
+#                 squared.append(leftSquared)
+#                 left+=1
+#             else:
+#                 squared.append(rightSquared)
+#                 right-=1
+#         return squared[::-1] 
+
+# Approach 2: Two pointers are used to compare absolute values, and the larger square is placed directly at the correct position from the end of the result array. Pointers move inward until all elements are processed, producing a sorted squares array without any extra reversal step.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of elements in the input array.
+# Space Complexity: O(N), as we are using an additional array to store the results
+# class Solution:
+    # def sortedSquares(self, nums: List[int]) -> List[int]:
+    #     res = [0] * len(nums)
+    #     i = 0 
+    #     j = len(nums) - 1
+    #     k = len(nums) - 1
+    #     while i <= j:
+    #         if abs(nums[i]) > abs(nums[j]):
+    #             res[k] = nums[i] * nums[i]
+    #             i += 1
+    #         else:
+    #             res[k] = nums[j] * nums[j]
+    #             j -= 1 
+    #         k -= 1
+    #     return res
+
+                
+
