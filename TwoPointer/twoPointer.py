@@ -198,6 +198,38 @@
 
 # https://neetcode.io/problems/valid-word-abbreviation/question?list=neetcode250
 # 408. Valid Word Abbreviation
+# Approach: Try to expand the abbreviation into all possible original strings and check if any of them matches the given word, or simulate every possible interpretation of the numbers by rebuilding the word step by step.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(2^M), where M is the number of digit groups in the abbreviation.
+# Space Complexity: O(M), due to the recursion stack in the worst case
+#class Solution:
+    # def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+    #     def expand(abbr):
+    #         res = ""
+    #         i = 0
+    #         while i < len(abbr):
+    #             if abbr[i].isalpha():
+    #                 res += abbr[i]
+    #                 i += 1
+    #             else:
+    #                 if abbr[i] == '0':
+    #                     return ""   # invalid leading zero
+    #                 num = 0
+    #                 while i < len(abbr) and abbr[i].isdigit():
+    #                     num = num * 10 + int(abbr[i])
+    #                     i += 1
+    #                 res += "#" * num   # placeholder
+    #         return res
+
+    #     expanded = expand(abbr)
+    #     if len(expanded) != len(word):
+    #         return False
+
+    #     for i in range(len(word)):
+    #         if expanded[i] != "#" and expanded[i] != word[i]:
+    #             return False
+    #     return True
+
 # APPROACH: Use two pointers to traverse the word and abbreviation. When encountering a digit in the abbreviation, convert it to an integer and skip that many characters in the word. If characters match, move both pointers forward. If a mismatch occurs, return False. If both pointers reach the end simultaneously, return True.
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N + M), where N is the length of the word and M is the length of the abbreviation.
