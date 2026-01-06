@@ -223,6 +223,7 @@
     #     expanded = expand(abbr)
     #     if len(expanded) != len(word):
     #         return False
+
     #     for i in range(len(word)):
     #         if expanded[i] != "#" and expanded[i] != word[i]:
     #             return False
