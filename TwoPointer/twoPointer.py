@@ -195,3 +195,31 @@
 #  ij
             
 #-------------------------------------------------------------------------------------------------------------
+
+# https://neetcode.io/problems/valid-word-abbreviation/question?list=neetcode250
+# 408. Valid Word Abbreviation
+# APPROACH: Use two pointers to traverse the word and abbreviation. When encountering a digit in the abbreviation, convert it to an integer and skip that many characters in the word. If characters match, move both pointers forward. If a mismatch occurs, return False. If both pointers reach the end simultaneously, return True.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N + M), where N is the length of the word and M is the length of the abbreviation.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def validWordAbbreviation(self, word: str, abbr: str) -> bool:
+#         i = 0  # Pointer for word
+#         j = 0  # Pointer for abbr
+#           while i < len(word) and j < len(abbr):
+#             #   If characters match, move both pointers
+#             if abbr[j].isalpha():
+#                 if word[i] != abbr[j]:
+#                     return False
+#                 i += 1
+#                 j += 1
+#             else:
+#                 # If we encounter a digit, calculate the full number
+#                 if abbr[j] == '0':
+#                     return False  # Leading zeros are not allowed
+#                 num = 0
+#                 while j < len(abbr) and abbr[j].isdigit():
+#                     num = num * 10 + int(abbr[j])
+#                     j += 1
+#                 i += num  # Skip 'num' characters in word
+#         return i == len(word) and j == len(abbr)
