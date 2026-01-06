@@ -132,5 +132,66 @@
     #         k -= 1
     #     return res
 
-                
+# -------------------------------------------------------------------------------------------------------------
+# 680. Valid Palindrome II
+# https://leetcode.com/problems/valid-palindrome-ii/
 
+# APPROACH 1: Try deleting each character one at a time and check whether the resulting string is a palindrome. If any deletion produces a palindrome, return true; otherwise, return false.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N^2), where N is the length of the input string.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+    # def validPalindrome(self, s: str) -> bool:
+        # def is_pal(st):
+        #     return st == st[::-1]
+
+        # for i in range(len(s)):
+        #     if is_pal(s[:i] + s[i+1:]):
+        #         return True
+        # return False
+
+# APPROACH 2: Use recursion with two pointers and a flag to track whether a character has already been deleted. When a mismatch occurs, recursively try skipping either the left or right character if no deletion has been used yet. If all characters match within this constraint, the string is a valid palindrome.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the length of the input string.
+# Space Complexity: O(N), due to the recursion stack in the worst case
+# class Solution:
+    # def validPalindrome(self, s: str) -> bool:
+    #     def validPalindrome(s):
+            # def dfs(l, r, deleted):
+            #     if l >= r:
+            #         return True
+            #     if s[l] == s[r]:
+            #         return dfs(l+1, r-1, deleted)
+            #     if deleted:
+            #         return False
+            #     return dfs(l+1, r, True) or dfs(l, r-1, True)
+            # return dfs(0, len(s)-1, False)
+            
+# Approach 3: Use two pointers from both ends of the string. When a mismatch occurs, skip either the left or right character once and check if the remaining substring is a palindrome. If either case is valid, return true.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the length of the input string.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+    # def validPalindrome(self, s: str) -> bool:
+    #     i = 0
+    #     j = len(s) - 1
+    #     def palindromehelper(i, j):
+    #         while i < j:
+    #             if (s[i] != s[j] ):
+    #                 return False
+    #             i += 1
+    #             j -= 1
+    #         return True
+    #     while i < j:
+    #         if s[i] != s[j]:
+    #             return palindromehelper(i+1, j) or palindromehelper(i, j - 1)
+    #         else : 
+    #              i += 1
+    #              j -= 1
+    #     return True
+# abbxa
+# i   j
+#  i j
+#  ij
+            
+#-------------------------------------------------------------------------------------------------------------
