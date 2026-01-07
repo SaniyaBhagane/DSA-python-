@@ -311,6 +311,7 @@
 
 # -------------------------------------------------------------------------------------------------------------
 # 1. TWO SUM
+# https://leetcode.com/problems/two-sum/
 
 # BRUTEFORCE : Check each number in the array which every other element to find the pair that sums to the target.
 # COMPLEXITY ANALYSIS:
@@ -336,3 +337,6 @@
 #             if value in hashmap:
 #                 return[hashmap[value], i]
 #             hashmap[num]=i
+#         return []  # Fallback (problem guarantees a solution)
+
+# -------------------------------------------------------------------------------------------------------------
