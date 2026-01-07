@@ -1,25 +1,4 @@
 # -------------------------------------------------------------------------------------------------
-# 1. TWO SUM
-
-# BRUTEFORCE : Two pointers
-# class Solution:
-#     def twoSum(self, nums: List[int], target: int) -> List[int]:
-#         for i in range(len(nums)):
-#             for j in range(i + 1, len(nums)):
-#                 if nums[i] + nums[j] == target:
-#                     return [i, j]
-#         return []  # Fallback (problem guarantees a solution)
-
-# APPROACH 2: One-pass Hash Table
-# class Solution:
-#     def twoSum(self, nums: List[int], target: int) -> List[int]:
-#         hashmap={}
-#         for i, num in enumerate(nums):
-#             value=target-num
-#             if value in hashmap:
-#                 return[hashmap[value], i]
-#             hashmap[num]=i
-
 # -------------------------------------------------------------------------------------------------------------
 # 125. VALID PALINDROME
 # https://leetcode.com/problems/valid-palindrome/
@@ -294,3 +273,38 @@
 #             k -= 1
 
 # -------------------------------------------------------------------------------------------------------------
+# 2824. Count Pairs Whose Sum is Less than Target
+# https://leetcode.com/problems/count-pairs-whose-sum-is-less-than-target/
+
+# Approach: Check each number in the array which every other element to find how many numbers can pair with it to form a sum less than the target.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N^2), where N is the number of elements in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def countPairs(self, nums: List[int], target: int) -> int:
+#         count = 0
+#         n = len(nums)
+#         for i in range(n):
+#             for j in range(i + 1, n):
+#                 if nums[i] + nums[j] < target:
+#                     count += 1
+#         return count
+
+# Approach 2: The array is first sorted. Two pointers are used—one at the start and one at the end. If the sum of nums[i] + nums[j] is less than the target, then all elements between i and j form valid pairs with nums[i], so we add (j - i) to the count and move i forward. Otherwise, we move j backward to reduce the sum.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N log N), where N is the number of elements in the input array due to sorting.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def countPairs(self, nums: List[int], target: int) -> int:
+#         nums.sort()
+#         i = 0 
+#         j = len(nums) - 1
+#         count = 0
+#         while i < j:
+#             curr_sum = nums[i] + nums[j]
+#             if curr_sum < target:
+#                 count += (j - i)
+#                 i += 1
+#             else:
+#                 j -= 1
+#         return count
