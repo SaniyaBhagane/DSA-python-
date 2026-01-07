@@ -364,3 +364,71 @@
 # 15. 3SUM
 # https://leetcode.com/problems/3sum/
 
+# Approach 1: First, sort the array and fix one element at a time. For each fixed element, use two pointers (left and right) to find pairs whose sum with the fixed element equals zero. Move pointers based on the sum and skip duplicates to ensure unique triplets.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N^2), where N is the number of elements in the input
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def threeSum(self, nums: List[int]) -> List[List[int]]:
+#         nums.sort()                 # Step 1: Sort the array
+#         res = []
+#         n = len(nums)
+#         for f in range(n):
+#             # Step 2: Skip duplicate fixed elements
+#             if f > 0 and nums[f] == nums[f - 1]:
+#                 continue
+#             i, j = f + 1, n - 1     # Step 3: Two pointers for remaining array
+#             while i < j:
+#                 total = nums[f] + nums[i] + nums[j]
+#                 if total < 0:       # Step 4: Sum too small → move left pointer
+#                     i += 1
+#                 elif total > 0:     # Step 5: Sum too large → move right pointer
+#                     j -= 1
+#                 else:
+#                     # Step 6: Found valid triplet
+#                     res.append([nums[f], nums[i], nums[j]])
+#                     i += 1
+#                     j -= 1
+#                     # Step 7: Skip duplicates for second and third elements
+#                     while i < j and nums[i] == nums[i - 1]:
+#                         i += 1
+#                     while i < j and nums[j] == nums[j + 1]:
+#                         j -= 1
+#         return res
+
+
+# Approach 2:After sorting the array, fix one element and reduce the problem to a 2Sum search on the remaining part of the array. The helper function uses two pointers to find valid pairs while skipping duplicates. This modular approach clearly shows how 3Sum is built on top of 2Sum.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N^2), where N is the number of elements in the input
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def threeSum(self, nums: List[int]) -> List[List[int]]:
+#         nums.sort()                 # Step 1: Sort array
+#         res = []
+#         def twoSumHelper(f):
+#             i, j = f + 1, len(nums) - 1  # Step 4: Two pointers
+#             while i < j:
+#                 total = nums[f] + nums[i] + nums[j]
+#                 if total < 0:
+#                     i += 1
+#                 elif total > 0:
+#                     j -= 1
+#                 else:
+#                     # Step 5: Found valid triplet
+#                     res.append([nums[f], nums[i], nums[j]])
+#                     i += 1
+#                     j -= 1
+#                     # Step 6: Skip duplicates
+#                     while i < j and nums[i] == nums[i - 1]:
+#                         i += 1
+#                     while i < j and nums[j] == nums[j + 1]:
+#                         j -= 1
+#         for f in range(len(nums)):
+#             # Step 2: Skip duplicate fixed elements
+#             if f > 0 and nums[f] == nums[f - 1]:
+#                 continue
+#             # Step 3: Reduce problem to 2Sum
+#             twoSumHelper(f)
+#         return res
+
+
