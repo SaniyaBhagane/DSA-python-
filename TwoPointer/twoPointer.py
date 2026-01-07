@@ -340,3 +340,27 @@
 #         return []  # Fallback (problem guarantees a solution)
 
 # -------------------------------------------------------------------------------------------------------------
+# 167. TWO SUM II - INPUT ARRAY IS SORTED
+# https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/
+
+# APPROACH: Use two pointers, one starting at the beginning and the other at the end of the array. Calculate the sum of the elements at these pointers. If the sum equals the target, return their indices. If the sum is less than the target, move the left pointer to the right to increase the sum. If the sum is greater than the target, move the right pointer to the left to decrease the sum. Repeat this process until the target sum is found.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of elements in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+    # def twoSum(self, numbers: List[int], target: int) -> List[int]:
+    #     i = 0
+    #     j = len(numbers) - 1
+    #     while i < j:
+    #         sum = numbers[i]+numbers[j]
+    #         if sum == target: 
+    #             return [i + 1, j + 1]
+    #         elif sum < target:
+    #             i += 1
+    #         elif sum > target: 
+    #             j -= 1
+    
+# -------------------------------------------------------------------------------------------------------------
+# 15. 3SUM
+# https://leetcode.com/problems/3sum/
+
