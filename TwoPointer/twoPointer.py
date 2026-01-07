@@ -254,3 +254,43 @@
 #                     j += 1
 #                 i += num  # Skip 'num' characters in word
 #         return i == len(word) and j == len(abbr)
+
+# -------------------------------------------------------------------------------------------------------------
+# 88. Merge Sorted Array
+# https://leetcode.com/problems/merge-sorted-array/
+
+# Approach 1: Add elements of nums2 to nums1 and sort the combined array[num1].
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O((m + n) log(m + n)), where m and n are the lengths of nums1 and nums2 respectively.
+# Space Complexity: O(1), as we are modifying nums1 in place
+# class Solution:
+#     def merge(self, nums1: List[int], m: int, nums2:
+#                  List[int], n: int) -> None:
+#         nums1[:] = sorted(nums1[:m] + nums2)
+
+# Approach 2: Use two pointers starting from the start of both arrays to compare elements and merge them into nums1.
+
+# Approach 3: Use pointers at the end of nums1, nums2, and the merged array. Compare elements from the back and place the larger one at the end of nums1, moving pointers backward until all elements are merged.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(m + n), where m and n are the lengths of nums1 and nums2 respectively.
+# Space Complexity: O(1), as we are modifying nums1 in place
+# class Solution:
+#     def merge(self, nums1: List[int], m: int, nums2: List[int], n: int) -> None:
+#         i = m - 1
+#         j = n - 1
+#         k = m + n - 1
+#         while i >= 0 and j >= 0:
+#             if nums1[i] > nums2[j]:
+#                 nums1[k] = nums1[i]
+#                 i -= 1
+#             else:
+#                 nums1[k] = nums2[j]
+#                 j -= 1
+#             k -= 1
+#         # Copy remaining elements of nums2 if any
+#         while j >= 0:
+#             nums1[k] = nums2[j]
+#             j -= 1
+#             k -= 1
+
+# -------------------------------------------------------------------------------------------------------------
