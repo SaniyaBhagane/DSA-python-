@@ -442,7 +442,7 @@
 #         nums.sort()
 #         return nums.count(0), nums.count(1)
 
-# Approach 2: Use two pointers to partition the array into three sections: all 0s at the beginning, all 1s in the middle, and all 2s at the end. Swap elements as needed to ensure correct placement.
+# Approach 2: Use two pointers starting from both ends of the array. Move the left pointer forward until a 1 is found and move the right pointer backward until a 0 is found, then swap them. Continue until both pointers meet, resulting in all 0s on the left and 1s on the right.
 # COMPLEXITY ANALYSIS:
 # Time Complexity: O(N), where N is the number of elements in the input array.
 # Space Complexity: O(1), as we are using only a constant amount of extra space 
