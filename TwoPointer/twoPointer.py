@@ -467,10 +467,7 @@
 # --------------------------------------------------------------------------------------------------------------
 # 75. SORT COLORS II
 # https://leetcode.com/problems/sort-colors-ii/
-# COMPLEXITY ANALYSIS:
-# Time: O(n)
-# Space: O(1)
-
+# COMPLEXITY ANALYSIS: Time: O(n)  Space: O(1)
 # Approach: Use three pointers: i to track the position for 0s, j to track the position for 2s, and k to traverse the array. While traversing, swap 0s to the left and 2s to the right, and move past 1s without swapping. This single-pass approach sorts the array in-place using constant extra space.
 # class Solution:
 #     def sortColors(self, nums: List[int]) -> None:
@@ -489,6 +486,9 @@
 #                 i += 1
 
 # ----------------------------------------------------------------------------------------------------------------------------
-# 91. 
+# 91. REMOVE NTH NODE FORM THE END OF THE LIST
+# https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
+# Approach: Traverse the linked list to calculate its total length, then compute the position of the node to remove from the beginning. Traverse again to that position and delete the node by adjusting pointers. This approach is simple but requires two passes.
+# # COMPLEXITY ANALYSIS: Time: O(n) Space: O(1)
 
 
