@@ -486,7 +486,7 @@
 #                 i += 1
 
 # ----------------------------------------------------------------------------------------------------------------------------
-# 91. REMOVE NTH NODE FORM THE END OF THE LIST
+# 19. REMOVE NTH NODE FORM THE END OF THE LIST
 # https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
 # Approach 1: Traverse the linked list to calculate its total length, then compute the position of the node to remove from the beginning. Traverse again to that position and delete the node by adjusting pointers. This approach is simple but requires two passes.
 # COMPLEXITY ANALYSIS: Time: O(n) Space: O(1)
