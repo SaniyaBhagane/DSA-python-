@@ -432,3 +432,39 @@
 #         return res
 
 # -------------------------------------------------------------------------------------------------------------
+# SORT TWO COLORS
+# Approach: First, sort the array so that all 0s come before 1s. Then count the number of 0s and 1s using built-in functions and return their counts.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N log N), where N is the number of elements in the input array due to sorting.
+# # Space Complexity: O(1), as we are using only a constant amount of extra space
+# class Solution:
+#     def sortColors(self, nums: List[int]) -> int:
+#         nums.sort()
+#         return nums.count(0), nums.count(1)
+
+# Approach 2: Use two pointers to partition the array into three sections: all 0s at the beginning, all 1s in the middle, and all 2s at the end. Swap elements as needed to ensure correct placement.
+# COMPLEXITY ANALYSIS:
+# Time Complexity: O(N), where N is the number of elements in the input array.
+# Space Complexity: O(1), as we are using only a constant amount of extra space 
+# class Solution:
+#     def sortColors(self, nums: List[int]) -> None:
+#         i = 0
+#         j = len(nums) = 1
+#         count0 = 0
+#         count1 = 0
+#         while i <= j:
+#             if nums[i] == 0:
+#                 count0 += 1
+#                 i += 1
+#             elif nums[j] == 1:
+#                 count1 += 1
+#                 j -= 1
+#             else:
+#                 nums[i], nums[j] = nums[j], nums[i]
+#                 j -= 1
+#         return count0, count1
+    
+            
+
+
+
