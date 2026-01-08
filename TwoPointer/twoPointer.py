@@ -488,24 +488,21 @@
 # ----------------------------------------------------------------------------------------------------------------------------
 # 19. REMOVE NTH NODE FORM THE END OF THE LIST
 # https://leetcode.com/problems/remove-nth-node-from-end-of-list/description/
-# Approach 1: Traverse the linked list to calculate its total length, then compute the position of the node to remove from the beginning. Traverse again to that position and delete the node by adjusting pointers. This approach is simple but requires two passes.
+# Approach 1: Traverse linked list to calculate its total length, then compute position of the node to remove from beginning. Traverse again to that position and delete the node by adjusting pointers. This approach is simple but requires two passes.
 # COMPLEXITY ANALYSIS: Time: O(n) Space: O(1)
 # class Solution:
 #     def removeNthFromEnd(self, head: Optional[ListNode], n: int) -> Optional[ListNode]:
 #         dummy = ListNode(0)
 #         dummy.next = head
-#         # Step 1: Count length
-#         length = 0
+#         length = 0 # Step 1: Count length
 #         curr = head
 #         while curr:
 #             length += 1
 #             curr = curr.next
-#         # Step 2: Find node before target
-#         curr = dummy
+#         curr = dummy  # Step 2: Find node before target
 #         for _ in range(length - n):
 #             curr = curr.next
-#         # Step 3: Remove node
-#         curr.next = curr.next.next
+#         curr.next = curr.next.next # Step 3: Remove node
 #         return dummy.next
 
 # Approach 2: Use a dummy node to handle edge cases like deleting the head. Move a fast pointer n steps ahead, then move both fast and slow pointers together until fast reaches the end. The slow pointer will be just before the node to delete, which is then removed.
@@ -515,16 +512,13 @@
 #         dummy = ListNode(0)
 #         dummy.next = head
 #         fast = head
-#         slow = dummy
-#         # Move fast pointer n steps ahead
-#         for _ in range(n):
+#         slow = dummy    
+#         for _ in range(n):  # Move fast pointer n steps ahead
 #             fast = fast.next
-#         # Move both pointers until fast reaches end
-#         while fast:
+#         while fast:  # Move both pointers until fast reaches end
 #             fast = fast.next
 #             slow = slow.next
-#         # Remove nth node from end
-#         slow.next = slow.next.next
+#         slow.next = slow.next.next     # Remove nth node from end
 #         return dummy.next
 
 
