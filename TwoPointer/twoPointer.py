@@ -463,8 +463,32 @@
 #                 nums[i], nums[j] = nums[j], nums[i]
 #                 j -= 1
 #         return count0, count1
-    
-            
 
+# --------------------------------------------------------------------------------------------------------------
+# 75. SORT COLORS II
+# https://leetcode.com/problems/sort-colors-ii/
+# COMPLEXITY ANALYSIS:
+# Time: O(n)
+# Space: O(1)
+
+# Approach: Use three pointers: i to track the position for 0s, j to track the position for 2s, and k to traverse the array. While traversing, swap 0s to the left and 2s to the right, and move past 1s without swapping. This single-pass approach sorts the array in-place using constant extra space.
+# class Solution:
+#     def sortColors(self, nums: List[int]) -> None:
+#         i = 0
+#         j = len(nums) - 1
+#         k = 0
+#         while (k <= j ):
+#             if nums[k] == 1:
+#                 k += 1
+#             elif nums[k] == 2:
+#                 nums[j], nums[k] = nums[k], nums[j]
+#                 j -= 1
+#             else:
+#                 nums[i], nums[k] = nums[k], nums[i]
+#                 k += 1
+#                 i += 1
+
+# ----------------------------------------------------------------------------------------------------------------------------
+# 91. 
 
 
