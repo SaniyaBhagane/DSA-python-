@@ -521,5 +521,27 @@
 #         slow.next = slow.next.next     # Remove nth node from end
 #         return dummy.next
 
+# ---------------------------------------------------------------------------------------------------------------
+# 246. Strobogrammatic Number
+# Approach: Reverse the number and rotate each digit using valid strobogrammatic mappings. If any digit is invalid, return false immediately. Finally, compare the rotated number with the original to determine if it is strobogrammatic.
+# COMPLEXITY ANALYSIS: Time: O(n) Space: O(n)
+# def isStrobogrammatic(num: str) -> bool: 
+#     rotate = {'0':'0', '1':'1', '8':'8', '9':'6', '6':'9'}
+#     rotated = ''
+#     for ch in reversed(num):
+#         if ch not in rotate:
+#             return False
+#         rotated += rotate[ch]
+#     return rotated == num
 
-
+# Approach 2: Use two pointers starting from the beginning and end of the string. Maintain a mapping of valid strobogrammatic digit pairs (0↔0, 1↔1, 8↔8, 6↔9, 9↔6). At each step, verify that the left digit maps correctly to the right digit. If any check fails, it’s not strobogrammatic.
+# COMPLEXITY ANALYSIS: Time: O(n) Space: O(1)
+# def isStrobogrammatic(num: str) -> bool:
+#     pairs = {'0':'0', '1':'1', '8':'8', '6':'9', '9':'6'}
+#     i, j = 0, len(num) - 1
+#     while (i<= j):
+#         if num[j] not in pairs or pairs[num[i]] != num[j]:
+#             return False
+#         i += 1
+#         j -= 1
+#     return True
