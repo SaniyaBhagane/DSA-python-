@@ -582,3 +582,17 @@
 # --------------------------------------------------------------------------------------------
 # 1650. Lowest Common Ancestor of a Binary Tree (III)
 # https://neetcode.io/problems/lowest-common-ancestor-of-a-binary-tree-iii/question?list=neetcode250
+
+# Approach: Store all ancestors of node p in a set by moving upward using parent pointers.Then move upward from node q; the first node that appears in the set is the Lowest Common Ancestor (LCA).This works because the LCA is the first common node in both ancestor paths.
+# COMPLEXITY ANALYSIS: Time: O(h) Space: O(h)  (where h is the height of the tree)
+# class Solution:
+#     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+#         ancestors = set()
+#         while p:  # Store all ancestors of p
+#             ancestors.add(p)
+#             p = p.parent
+#         while q: # Traverse ancestors of q
+#             if q in ancestors:
+#                 return q
+#             q = q.parent
+#         return None
