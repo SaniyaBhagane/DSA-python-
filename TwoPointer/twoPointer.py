@@ -596,3 +596,17 @@
 #                 return q
 #             q = q.parent
 #         return None
+
+# Approach 2: Use two pointers starting at nodes p and q. Each pointer moves upward to its parent; when it reaches null, redirect it to the other node. They will meet at the Lowest Common Ancestor because both traverse equal total path lengths.
+# COMPLEXITY ANALYSIS: Time: O(h) Space: O(1)  (where h is the height of the tree)
+# class Solution:
+#     def lowestCommonAncestor(self, p: 'Node', q: 'Node') -> 'Node':
+#         a, b = p, q
+#         # Move both pointers until they meet
+#         while a != b:
+#             # If a reaches root, switch to q
+#             a = a.parent if a else q
+#             # If b reaches root, switch to p
+#             b = b.parent if b else p
+#         # Meeting point is the LCA
+#         return a
