@@ -545,3 +545,38 @@
 #         i += 1
 #         j -= 1
 #     return True
+
+# ---------------------------------------------------------------------------------------------------------------
+# 2486. Append Characters to string to make subsequence
+# https://leetcode.com/problems/append-characters-to-string-to-make-subsequence/description/
+# Approach : For each character in t, scan the remaining part of s to find a match. If a character cannot be matched, it must be appended to s. The number of unmatched characters is the answer.
+# COMPLEXITY ANALYSIS: Time: O(|s| × |t|) Space: O(1)
+# class Solution:
+#     def appendCharacters(self, s: str, t: str) -> int:
+#         i = 0  # pointer for s
+#         count = 0
+#         for ch in t:
+#             found = False
+#             while i < len(s):
+#                 if s[i] == ch:
+#                     found = True
+#                     i += 1
+#                     break
+#                 i += 1
+#             if not found:
+#                 count += 1
+#         return count
+
+# Approach 2: Use two pointers, i for string s and j for string t, and traverse through s while trying to match characters of t in order. When characters match, move both pointers forward; otherwise, move only the pointer in s. After traversal, the number of characters left unmatched in t, calculated as len(t) − j, is the number of characters that need to be appended.
+# COMPLEXITY ANALYSIS: Time: O(|s| + |t|) Space: O(1)
+# class Solution:
+#     def appendCharacters(self, s: str, t: str) -> int:
+#         i = 0
+#         j = 0
+#         while i < len(s) and j < len(t):
+#             if s[i] == t[j]:
+#                 j += 1
+#             i += 1
+#         return len(t) - j
+
+# --------------------------------------------------------------------------------------------
