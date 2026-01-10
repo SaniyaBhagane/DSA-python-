@@ -624,4 +624,44 @@
 #             j -= 1
 #             i += 1
 #         return "".join(arr) # Step 3: Join words with single space
+# Example Walkthrough
+
+# Input:
+# " hello world "
+
+# After trimming and splitting, we get the array ["hello", "world"].
+# Using two pointers (i = 0, j = 1), we swap the words, resulting in ["world", "hello"].
+# Joining them with a space gives the final output:
+# Output: "world hello"
         
+# Approach 2: First, remove extra spaces so that words are separated by a single space and there are no leading or trailing spaces. Then reverse the entire string to bring words into reverse order. Finally, reverse each individual word to restore correct character order within the words.
+# COMPLEXITY ANALYSIS: Time: O(n) Space: O(1)
+# class Solution:
+#     def reverseWords(self, s: str) -> str:
+#         chars = list(s) # Convert to list because strings are immutable
+#         n = len(chars)
+#         i, j = 0, 0 # Step 1: Remove extra spaces
+#         while j < n:
+#             while j < n and chars[j] == ' ':
+#                 j += 1
+#             while j < n and chars[j] != ' ':
+#                 chars[i] = chars[j]
+#                 i += 1
+#                 j += 1
+#             if j < n:
+#                 chars[i] = ' '
+#                 i += 1
+#         if i > 0 and chars[i - 1] == ' ': # Remove trailing space if exists
+#             i -= 1
+#         chars = chars[:i]
+#         chars.reverse() # Step 2: Reverse the entire string
+#         start = 0 # Step 3: Reverse each word
+#         for end in range(len(chars) + 1):
+#             if end == len(chars) or chars[end] == ' ':
+#                 l, r = start, end - 1
+#                 while l < r:
+#                     chars[l], chars[r] = chars[r], chars[l]
+#                     l += 1
+#                     r -= 1
+#                 start = end + 1
+#         return ''.join(chars)
