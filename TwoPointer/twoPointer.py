@@ -40,7 +40,6 @@
 #         return True
 
 # -------------------------------------------------------------------------------------------------------------
-
 # 344. Reverse String
 # https://leetcode.com/problems/reverse-string/ 
 
@@ -571,8 +570,7 @@
 # COMPLEXITY ANALYSIS: Time: O(|s| + |t|) Space: O(1)
 # class Solution:
 #     def appendCharacters(self, s: str, t: str) -> int:
-#         i = 0
-#         j = 0
+#         i, j = 0, 0
 #         while i < len(s) and j < len(t):
 #             if s[i] == t[j]:
 #                 j += 1
@@ -610,3 +608,20 @@
 #             b = b.parent if b else p
 #         # Meeting point is the LCA
 #         return a
+
+# -------------------------------------------------------------------------------------------------------------------------
+# 151. Reverse Words in a String
+# https://leetcode.com/problems/reverse-words-in-a-string/description/
+
+# Approach 1: First, remove extra spaces from the string and split it into individual words. Then, use two pointers—one starting from the beginning and one from the end—to reverse the order of words by swapping them. Finally, join the reversed words using a single space to form the result string.
+# COMPLEXITY ANALYSIS: Time: O(n) Space: O(n)
+# class Solution:
+#     def reverseWords(self, s: str) -> str:
+#         arr = s.strip().split() # Step 1: Trim spaces and split by one or more spaces
+#         i, j = 0, len(arr)-1
+#         while i<j:
+#             arr[i], arr[j] = arr[j], arr[i]
+#             j -= 1
+#             i += 1
+#         return "".join(arr) # Step 3: Join words with single space
+        
