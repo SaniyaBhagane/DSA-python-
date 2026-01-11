@@ -656,3 +656,34 @@
 #                     r -= 1
 #                 start = end + 1
 #         return ''.join(chars)
+
+# -----------------------------------------------------------------------------------------------------------
+# 557. Reverse Words in a String III
+# https://leetcode.com/problems/reverse-words-in-a-string-III/description/
+
+# Approach :Split the string into words using spaces, reverse each word individually, and then join them back with spaces. This approach is easy to understand but uses extra space to store the split words and the final result.
+# COMPLEXITY ANALYSIS: Time: O(n) Space: O(n)
+# class Solution:
+#     def reverseWords(self, s: str) -> str:
+#         words = s.split(" ")
+#         result = []
+#         for word in words:
+#             result.append(word[::-1])
+#         return " ".join(result)
+
+# Approach 2: Convert the string to a list of characters and use two pointers to reverse characters of each word in place when a space or end of string is reached. This avoids creating extra word lists and works directly on the character array.
+# COMPLEXITY ANALYSIS: Time: O(n) Space: O(1)
+# class Solution:
+#     def reverseWords(self, s: str) -> str:
+#         chars = list(s)
+#         start = 0
+#         for i in range(len(chars) + 1):
+#             if i == len(chars) or chars[i] == ' ':
+#                 while l < r:
+#                     l, r = start, i-1
+#                     chars[l], chars[r] = chars[r], chars[l]
+#                     l += 1
+#                     r -= 1
+#                 start = i+1
+#         return "".join(chars)
+       
