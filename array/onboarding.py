@@ -36,8 +36,6 @@
 #                 count = 0
 #         return max(maxCount, count)        
 # --------------------------------------------------------------------------
-
-
 # 1295. Find Numbers with Even Number of Digits
 # https://leetcode.com/problems/find-numbers-with-even-number-of-digits/
 
@@ -97,7 +95,6 @@
 #         return counter
 
 # --------------------------------------------------------------------------
-
 # 724. Find Pivot Index
 # https://leetcode.com/problems/find-pivot-index/
 
@@ -151,7 +148,6 @@
 #         return -1
 # 
 #--------------------------------------------------------------------------
-
 # 118. Pascal's Triangle
 # https://leetcode.com/problems/pascals-triangle/
 
@@ -185,7 +181,6 @@
 #         return res
 
 # --------------------------------------------------------------------------
-
 # 344. Reverse String
 # https://leetcode.com/problems/reverse-string/ 
 
@@ -214,4 +209,4 @@
 #             i += 1
 #             j -= 1
 
-# --------------------------------------------------------------------------
+# ------------------------------------LINKED LIST--------------------------------------
