@@ -210,3 +210,68 @@
 #             j -= 1
 
 # ------------------------------------LINKED LIST--------------------------------------
+# 707. Design a Linked list
+# 
+# Approach: The linked list is implemented by maintaining a head pointer and a size variable to track the number of nodes. For accessing a value, the list is traversed from the head up to the required index. Insertion at the head is done by creating a new node and pointing it to the current head, while insertion at the tail requires traversing to the last node and attaching the new node. Insertion at a specific index is handled by stopping at the previous node and adjusting pointers to insert the new node in between. Deletion works similarly by bypassing the node at the given index and reconnecting the surrounding nodes. The size is updated after every insertion or deletion to keep the structure consistent.
+# COMPLEXITY ANALYSIS: Time => get, addAtTail, addAtIndex, deleteAtIndex:O(n) ddAtHead: O(1)
+
+# class Node:
+#     def __init__(self, val):
+#         self.val = val
+#         self.next = None
+
+# class MyLinkedList:
+#     def __init__(self):
+#         self.head = None
+#         self.size = 0
+
+#     def get(self, index: int) -> int:
+#         if index < 0 or index >= self.size:
+#             return -1
+#         curr = self.head
+#         for _ in range(index):
+#             curr = curr.next
+#         return curr.val        
+
+#     def addAtHead(self, val: int) -> None:
+#         newNode = Node(val)
+#         newNode.next = self.head
+#         self.head = newNode
+#         self.size += 1 
+
+#     def addAtTail(self, val: int) -> None:
+#         newNode = Node(val)
+#         if not self.head:
+#             self.head = newNode
+#         else:
+#             curr = self.head
+#             while curr.next:
+#                 curr = curr.next
+#             curr.next = newNode
+#         self.size += 1
+        
+#     def addAtIndex(self, index: int, val: int) -> None:
+#         if index < 0 or index > self.size:
+#             return
+#         if index == 0:
+#             self.addAtHead(val)
+#             return
+#         curr = self.head
+#         for _ in range(index - 1):
+#             curr = curr.next
+#         newNode = Node(val)
+#         newNode.next = curr.next
+#         curr.next = newNode
+#         self.size += 1
+
+#     def deleteAtIndex(self, index: int) -> None:
+#         if index < 0 or index >= self.size:
+#             return
+#         if index == 0:
+#             self.head = self.head.next
+#         else:
+#             curr = self.head
+#             for _ in range(index - 1):
+#                 curr = curr.next
+#             curr.next = curr.next.next
+#         self.size -= 1
