@@ -211,7 +211,7 @@
 # Visit 2 again → already visited → cycle starts at 2
 
 # Approach 2: Use slow and fast pointers to detect a cycle. Once they meet, place one pointer at the head and move both one step at a time. The node where they meet again is the start of the cycle.
-
+# Complexity: Time: O(n) Space: O(1)
 # class Solution:
 #     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
 #         slow = fast = head
@@ -228,3 +228,14 @@
 #             n1 = n1.next
 #             n2 = n2.next
 #         return n1
+# Example Walkthrough (Optimal)
+# 1 → 2 → 3 → 4
+#      ↑       ↓
+#      ← ← ← ←
+# Step 1: Detect cycle
+# slow and fast meet at node 4 → cycle confirmed
+# Step 2: Find cycle start
+# n1 = meeting point (4)
+# n2 = head (1)
+# Move both one step at a time
+# They meet at node 2 → cycle starts here
