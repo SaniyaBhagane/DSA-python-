@@ -132,3 +132,54 @@
 # 3	4	None
 # Loop ends → slow = 4
 # Output: 4 (second middle, as required)
+
+# ------------------------------------------------------------------------
+# 141. Linked List Cycle
+# https://leetcode.com/problems/linked-list-cycle/description/
+# Apprach : Traverse the linked list and store each visited node in a set (or list). If you ever encounter a node that is already present, it means the list has a cycle. If you reach None, then no cycle exists.
+# Complexity: Time: O(n) Space: O(n)
+# class Solution:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         visited = set()
+#         curr = head
+#         while curr:
+#             if curr in visited:
+#                 return True
+#             visited.add(curr)
+#             curr = curr.next
+#         return False 
+# Example Walkthrough
+# Input:
+# 1 → 2 → 3 → 4
+#      ↑       ↓
+#      ← ← ← ←
+# Visit node 1 → store it
+# Visit node 2 → store it
+# Visit node 3 → store it
+# Visit node 4 → store it
+# Next node is 2 again → already visited → cycle detected
+# Output: True
+
+# Approach 2: Use two pointers starting from the head: a slow pointer that moves one step and a fast pointer that moves two steps. If the list has a cycle, the fast pointer will eventually meet the slow pointer. If the fast pointer reaches the end (None), there is no cycle.
+# Complexity: Time: O(n) Space: O(1)
+# Definition for singly-linked list.
+# class Solution:
+#     def hasCycle(self, head: Optional[ListNode]) -> bool:
+#         slow = fast = head
+#         while fast != None and fast.next != None:
+#             slow = slow.next
+#             fast = fast.next.next
+#             if (slow == fast):
+#                 return True
+#         return False 
+# Example Walkthrough (Cycle Exists)
+# Input:
+# 1 → 2 → 3 → 4
+#      ↑       ↓
+#      ← ← ← ←
+# Step	slow	fast
+# 1	2	3
+# 2	3	1
+# 3	4	3
+# 4	1	1
+# Pointers meet → cycle detected → return True
