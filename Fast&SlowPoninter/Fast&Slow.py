@@ -272,22 +272,22 @@
 # Approach 2: Use slow & fast pointers to detect a cycle. Once they meet, keep one pointer fixed. Move the other pointer until it comes back to the same node, counting steps → that count is the loop length
 # Mention Floyd’s Cycle Detection + loop traversal — it shows strong linked list understanding and is highly valued in interviews
 # Complexity: Time: O(n) Space: O(1)
-class Solution:
-    def countNodesinLoop(self, head):
-        slow = fast = head
-        while fast and fast.next: # Step 1: Detect loop
-            slow = slow.next
-            fast = fast.next.next
-            if slow == fast:
-                return self.loopLength(slow)
-        return 0
-    def loopLength(self, node):
-        count = 1
-        curr = node.next
-        while curr != node:
-            count += 1
-            curr = curr.next
-        return count
+# class Solution:
+#     def countNodesinLoop(self, head):
+#         slow = fast = head
+#         while fast and fast.next: # Step 1: Detect loop
+#             slow = slow.next
+#             fast = fast.next.next
+#             if slow == fast:
+#                 return self.loopLength(slow)
+#         return 0
+#     def loopLength(self, node):
+#         count = 1
+#         curr = node.next
+#         while curr != node:
+#             count += 1
+#             curr = curr.next
+#         return count
 # Example Walkthrough (Optimal)
 # 1 → 2 → 3 → 4 → 5
 #      ↑           ↓
