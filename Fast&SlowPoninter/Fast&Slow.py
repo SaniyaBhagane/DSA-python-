@@ -136,7 +136,7 @@
 # ------------------------------------------------------------------------
 # 141. Linked List Cycle
 # https://leetcode.com/problems/linked-list-cycle/description/
-# Apprach : Traverse the linked list and store each visited node in a set (or list). If you ever encounter a node that is already present, it means the list has a cycle. If you reach None, then no cycle exists.
+# Approach : Traverse the linked list and store each visited node in a set (or list). If you ever encounter a node that is already present, it means the list has a cycle. If you reach None, then no cycle exists.
 # Complexity: Time: O(n) Space: O(n)
 # class Solution:
 #     def hasCycle(self, head: Optional[ListNode]) -> bool:
@@ -242,34 +242,7 @@
 
 # -----------------------------------------------------------------
 # FIND LENGTH OF LOOP: [GFG]
-# Approach: Traverse the list and store each node with the step count when it was first visited. If you visit a node again, the loop length is: current step − first seen step of that node
-# Complexity: Time: O(n) Space: O(n)
-# class Solution:
-#     def countNodesinLoop(self, head):
-#         visited = {}
-#         curr = head
-#         step = 0
-#         while curr:
-#             if curr in visited:
-#                 return step - visited[curr]
-#             visited[curr] = step
-#             step += 1
-#             curr = curr.next
-#         return 0
-# Example Walkthrough (Brute Force)
-# 1 → 2 → 3 → 4 → 5
-#      ↑           ↓
-#      ← ← ← ← ← ←
-# Node	Step
-# 1	0
-# 2	1
-# 3	2
-# 4	3
-# 5	4
-# 2 (again)	step = 5
-# Loop length = 5 - 1 = 4
-
-# Approach 2: Use slow & fast pointers to detect a cycle. Once they meet, keep one pointer fixed. Move the other pointer until it comes back to the same node, counting steps → that count is the loop length
+# Approach: Use slow & fast pointers to detect a cycle. Once they meet, keep one pointer fixed. Move the other pointer until it comes back to the same node, counting steps → that count is the loop length
 # Mention Floyd’s Cycle Detection + loop traversal — it shows strong linked list understanding and is highly valued in interviews
 # Complexity: Time: O(n) Space: O(1)
 # class Solution:
