@@ -184,3 +184,47 @@
 # 4	1	1
 # Pointers meet → cycle detected → return True
 
+# --------------------------------------------------
+# 142. Linked List Cycle II
+# https://leetcode.com/problems/linked-list-cycle-ii/description/
+
+# Approach: Traverse the linked list and store each visited node in a set. The first node that repeats is the start of the cycle. If the list ends, there is no cycle.
+# Complexity: Time: O(n) Space: O(n)
+# class Solution:
+#     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         visited = set()
+#         curr = head
+#         while curr:
+#             if curr in visited:
+#                 return curr
+#             visited.add(curr)
+#             curr = curr.next
+#         return None
+# Example Walkthrough (Brute Force)
+# 1 → 2 → 3 → 4
+#      ↑       ↓
+#      ← ← ← ←
+# Visit 1 → store
+# Visit 2 → store
+# Visit 3 → store
+# Visit 4 → store
+# Visit 2 again → already visited → cycle starts at 2
+
+# Approach 2: Use slow and fast pointers to detect a cycle. Once they meet, place one pointer at the head and move both one step at a time. The node where they meet again is the start of the cycle.
+
+# class Solution:
+#     def detectCycle(self, head: Optional[ListNode]) -> Optional[ListNode]:
+#         slow = fast = head
+#         while fast and fast.next: # Step 1: Detect cycle
+#             slow = slow.next
+#             fast = fast.next.next
+#             if slow == fast:
+#                 break
+#         if not fast or not fast.next:
+#             return None 
+#         n1 = slow # Step 2: Find cycle start
+#         n2 = head
+#         while n1 != n2:
+#             n1 = n1.next
+#             n2 = n2.next
+#         return n1
