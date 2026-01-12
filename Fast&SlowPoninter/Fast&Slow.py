@@ -242,4 +242,56 @@
 
 # -----------------------------------------------------------------
 # FIND LENGTH OF LOOP: [GFG]
+# Approach: Traverse the list and store each node with the step count when it was first visited. If you visit a node again, the loop length is: current step − first seen step of that node
+# Complexity: Time: O(n) Space: O(n)
+# class Solution:
+#     def countNodesinLoop(self, head):
+#         visited = {}
+#         curr = head
+#         step = 0
+#         while curr:
+#             if curr in visited:
+#                 return step - visited[curr]
+#             visited[curr] = step
+#             step += 1
+#             curr = curr.next
+#         return 0
+# Example Walkthrough (Brute Force)
+# 1 → 2 → 3 → 4 → 5
+#      ↑           ↓
+#      ← ← ← ← ← ←
+# Node	Step
+# 1	0
+# 2	1
+# 3	2
+# 4	3
+# 5	4
+# 2 (again)	step = 5
+# Loop length = 5 - 1 = 4
 
+# Approach 2: Use slow & fast pointers to detect a cycle. Once they meet, keep one pointer fixed. Move the other pointer until it comes back to the same node, counting steps → that count is the loop length
+# Mention Floyd’s Cycle Detection + loop traversal — it shows strong linked list understanding and is highly valued in interviews
+# Complexity: Time: O(n) Space: O(1)
+class Solution:
+    def countNodesinLoop(self, head):
+        slow = fast = head
+        while fast and fast.next: # Step 1: Detect loop
+            slow = slow.next
+            fast = fast.next.next
+            if slow == fast:
+                return self.loopLength(slow)
+        return 0
+    def loopLength(self, node):
+        count = 1
+        curr = node.next
+        while curr != node:
+            count += 1
+            curr = curr.next
+        return count
+# Example Walkthrough (Optimal)
+# 1 → 2 → 3 → 4 → 5
+#      ↑           ↓
+#      ← ← ← ← ← ←
+# slow & fast meet at node 4 → loop exists
+# Start counting from 4 → 5 → 2 → 3 → 4
+# Total nodes = 4
