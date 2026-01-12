@@ -90,3 +90,27 @@
 # fast = 1
 # Final Result:
 # Since fast pointer reaches 1, the number is a Happy Number and the function returns True.
+
+# ------------------------------------------------------------------
+# 876. Middle of the LinkedList
+# https://leetcode.com/problems/middle-of-the-linked-list/description/
+# Approach : First count the total number of nodes. Then traverse again until you reach the middle node (length // 2) and return it.
+# Complexity: Time: O(n) Space: O(1)
+# class Solution:
+#     def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]: 
+#         length = 0
+#         curr = head
+#         while curr:
+#             length += 1
+#             curr = curr.next
+#         curr = head
+#         for _ in range(length // 2):
+#             curr = curr.next
+#         return curr
+# Example Walkthrough
+# Input:
+# 1 → 2 → 3 → 4 → 5
+# Step	slow	fast
+# 1	2	3
+# 2	3	5
+# fast.next becomes None, loop stops → slow = 3 (middle)
