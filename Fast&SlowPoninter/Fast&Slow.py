@@ -47,3 +47,46 @@
 # Sum of squares = 1² = 1
 # n = 1
 # Final Result: Since the number becomes 1, the function returns True (Happy Number).
+
+# Approach 2: We repeatedly replace the number with the sum of squares of its digits. One pointer (slow) moves one step at a time, while another pointer (fast) moves two steps at a time. If the number is happy, the fast pointer will eventually reach 1. If the number is not happy, both pointers will meet at the same number, which means a cycle exists and the number will never reach 1.
+# Complexity Analysis: Time: O(log n) per iteration  Space: O(1) (no extra memory)
+# class Solution:
+#     def sumOfSquareOfDigits(self, n):
+#         total = 0
+#         while n > 0:
+#             dig = n % 10
+#             total += dig * dig
+#             n //= 10
+#         return total
+#     def isHappy(self, n: int) -> bool:
+#         slow = fast = n
+#         while True:
+#             slow = self.sumOfSquareOfDigits(slow)
+#             fast = self.sumOfSquareOfDigits(
+#                 self.sumOfSquareOfDigits(fast)
+#             )
+#             if fast == 1:
+#                 return True
+#             if slow == fast:
+#                 return False
+# Example Walkthrough:
+# Input: n = 19
+# Initial:
+# slow = 19
+# fast = 19
+# Step 1:
+# slow = sumSq(19) = 1² + 9² = 82
+# fast = sumSq(sumSq(19))
+#      = sumSq(82)
+#      = 8² + 2² = 68
+# slow = 82
+# fast = 68
+# Step 2:
+# slow = sumSq(82) = 8² + 2² = 68
+# fast = sumSq(sumSq(68))
+#      = sumSq(100)
+#      = 1² = 1
+# slow = 68
+# fast = 1
+# Final Result:
+# Since fast pointer reaches 1, the number is a Happy Number and the function returns True.
