@@ -48,7 +48,7 @@
 # n = 1
 # Final Result: Since the number becomes 1, the function returns True (Happy Number).
 
-# Approach 2: We repeatedly replace the number with the sum of squares of its digits. One pointer (slow) moves one step at a time, while another pointer (fast) moves two steps at a time. If the number is happy, the fast pointer will eventually reach 1. If the number is not happy, both pointers will meet at the same number, which means a cycle exists and the number will never reach 1.
+# Approach 2: We repeatedly replace the number with the sum of squares of its digits. One pointer (slow) moves one step at a time, while another pointer (fast) moves two steps at a time. If the number is happy, the fast pointer will eventually reach 1. If the number is not happy, both pointers will meet at the same number, which means a cycle exists and the number will never reach 1. This is called Floyd’s Cycle Detection Algorithm and is preferred because it detects cycles without extra memory.
 # Complexity Analysis: Time: O(log n) per iteration  Space: O(1) (no extra memory)
 # class Solution:
 #     def sumOfSquareOfDigits(self, n):
@@ -160,7 +160,7 @@
 # Next node is 2 again → already visited → cycle detected
 # Output: True
 
-# Approach 2: Use two pointers starting from the head: a slow pointer that moves one step and a fast pointer that moves two steps. If the list has a cycle, the fast pointer will eventually meet the slow pointer. If the fast pointer reaches the end (None), there is no cycle.
+# Approach 2: Use two pointers starting from the head: a slow pointer that moves one step and a fast pointer that moves two steps. If the list has a cycle, the fast pointer will eventually meet the slow pointer. If the fast pointer reaches the end (None), there is no cycle. This is called Floyd’s Cycle Detection Algorithm and is preferred because it detects cycles without extra memory.
 # Complexity: Time: O(n) Space: O(1)
 # Definition for singly-linked list.
 # class Solution:
@@ -183,3 +183,4 @@
 # 3	4	3
 # 4	1	1
 # Pointers meet → cycle detected → return True
+
