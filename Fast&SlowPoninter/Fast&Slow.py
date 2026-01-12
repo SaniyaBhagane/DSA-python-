@@ -239,3 +239,7 @@
 # n2 = head (1)
 # Move both one step at a time
 # They meet at node 2 → cycle starts here
+
+# -----------------------------------------------------------------
+# FIND LENGTH OF LOOP: [GFG]
+
