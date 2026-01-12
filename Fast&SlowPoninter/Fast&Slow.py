@@ -114,3 +114,21 @@
 # 1	2	3
 # 2	3	5
 # fast.next becomes None, loop stops → slow = 3 (middle)
+
+# Approach 2: To find the middle of a linked list, we can use two pointers starting at the head. The slow pointer moves one step at a time while the fast pointer moves two steps. When the fast pointer reaches the end of the list, the slow pointer will be at the middle node, which is returned as the result.
+# Complexity: Time: O(n) Space: O(1)
+# class Solution:
+    # def middleNode(self, head: Optional[ListNode]) -> Optional[ListNode]:
+    #     slow = fast = head
+    #     while fast and fast.next:
+    #         slow = slow.next
+    #         fast = fast.next.next
+    #     return slow
+#  Example Walkthrough
+# Input: 1 → 2 → 3 → 4 → 5 → 6
+# Step	slow	fast
+# 1	2	3
+# 2	3	5
+# 3	4	None
+# Loop ends → slow = 4
+# Output: 4 (second middle, as required)
