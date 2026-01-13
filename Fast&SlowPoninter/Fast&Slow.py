@@ -366,3 +366,30 @@
 # nums[1] = 3	nums[2] = 4
 # nums[3] = 2	nums[4] = 2 ← meet
 # ✅ Duplicate = 2
+
+# -------------------------------------------------------------------------
+# 234. Palindrome LinkedList:
+# https://leetcode.com/problems/palindrome-linked-list/description/
+# Approach: Traverse the linked list and store all values in a list. Then use two pointers (start & end) to check if the list reads the same forward and backward. If all values match → palindrome.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(n)
+# class Solution:
+#     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+#         arr = []
+#         # Store values in list
+#         while head:
+#             arr.append(head.val)
+#             head = head.next
+#         # Two-pointer check
+#         i, j = 0, len(arr) - 1
+#         while i < j:
+#             if arr[i] != arr[j]:
+#                 return False
+#             i += 1
+#             j -= 1
+#         return True
+# Example Walkthrough= Input: 1 → 2 → 2 → 1
+# Convert to list → [1, 2, 2, 1]
+# Compare:
+# 1 == 1 ✅
+# 2 == 2 ✅
+# All matched → Palindrome
