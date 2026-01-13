@@ -324,7 +324,7 @@
 # Input: nums = [1, 3, 4, 2, 2]
 # Step-by-step: visited = {}
 # Read 1 → not in set → add → {1}
-# Read 3 → not in set → add → {1, 3}
+# Read 3 → not in set → add → {1, 3} 
 # Read 4 → not in set → add → {1, 3, 4}
 # Read 2 → not in set → add → {1, 2, 3, 4}
 # Read 2 → already in set ✅ → return 2
@@ -394,7 +394,7 @@
 # 2 == 2 ✅
 # All matched → Palindrome
 
-# Approach 2:We use slow and fast pointers to find the middle of the linked list. Then we reverse the second half and compare it with the first half node by node. If all values match, the linked list is a palindrome.
+# Approach 2: We use slow and fast pointers to find the middle of the linked list. Then we reverse the second half and compare it with the first half node by node. If all values match, the linked list is a palindrome.
 # COMPLEXITY ANALYSIS: Time= O(n)   Space= O(1)
 # class Solution:
 #     def reverseLL(self, curr):
