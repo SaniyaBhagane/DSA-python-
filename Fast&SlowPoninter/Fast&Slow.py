@@ -268,3 +268,43 @@
 # slow & fast meet at node 4 → loop exists
 # Start counting from 4 → 5 → 2 → 3 → 4
 # Total nodes = 4
+
+# ----------------------------------------------------------------------------------------
+# Split A Circular Linked list into two halves [GFG]:
+# Approach: We use slow and fast pointers to find the middle of the circular linked list. Once the middle is found, we split the list into two halves and carefully update pointers so both halves remain circular. Finally, we return the heads of the two circular linked lists.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(1)
+# class Solution:
+#     def splitList(self, head):
+#         if not head or head.next == head:
+#             return head, None  # Only one node
+#         slow = head
+#         fast = head.next
+#         while fast != head and fast.next != head:  # Find middle using slow & fast
+#             slow = slow.next
+#             fast = fast.next
+#             if fast.next != head:
+#                 fast = fast.next
+#         head1 = head  # Heads of the two lists
+#         head2 = slow.next
+#         fast.next = head2  # Make second list circular
+#         slow.next = head1 # Make first list circular
+#         return head1, head2 # Return pair of heads
+# Example Walkthrough
+# Input Circular List: 1 → 2 → 3 → 4 → 5 → back to 1
+# Step 1: Find middle
+# slow moves one step, fast moves two steps
+# When fast reaches near the head again, slow is at 3
+# slow = 3
+# fast = 5
+# Step 2: Split the list
+# First list head = 1
+# Second list head = slow.next = 4
+# Step 3: Make both lists circular
+# First Circular List:
+# 1 → 2 → 3 → back to 1
+# Second Circular List:
+# 4 → 5 → back to 4
+# Step 4: Return result
+# (head1, head2) = (1, 4)
+
+# -----------------------------------------------------------------------------
