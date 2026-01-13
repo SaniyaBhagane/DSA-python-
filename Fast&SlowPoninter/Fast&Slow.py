@@ -308,3 +308,24 @@
 # (head1, head2) = (1, 4)
 
 # -----------------------------------------------------------------------------
+# 287. Find the Duplicate Number
+# https://leetcode.com/problems/find-the-duplicate-number/description/
+# # Approach: We iterate through the array and keep track of numbers we’ve already seen using a set. If a number appears again, it means it’s the duplicate, so we return it immediately.This avoids nested loops and makes detection fast.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(n)
+# class Solution:
+#     def findDuplicate(self, nums: List[int]) -> int:
+#         visited = set()
+#         for num in nums:
+#             if num in visited:
+#                 return num
+#             visited.add(num)
+#         return -1
+# Example Walkthrough
+# Input: nums = [1, 3, 4, 2, 2]
+# Step-by-step: visited = {}
+# Read 1 → not in set → add → {1}
+# Read 3 → not in set → add → {1, 3}
+# Read 4 → not in set → add → {1, 3, 4}
+# Read 2 → not in set → add → {1, 2, 3, 4}
+# Read 2 → already in set ✅ → return 2
+# Output: 2
