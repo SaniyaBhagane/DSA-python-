@@ -393,3 +393,42 @@
 # 1 == 1 ✅
 # 2 == 2 ✅
 # All matched → Palindrome
+
+# Approach 2:We use slow and fast pointers to find the middle of the linked list. Then we reverse the second half and compare it with the first half node by node. If all values match, the linked list is a palindrome.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(1)
+# class Solution:
+#     def reverseLL(self, curr):
+#         prev = None
+#         while curr:
+#             nxt = curr.next      # store next
+#             curr.next = prev     # reverse link
+#             prev = curr          # move prev
+#             curr = nxt           # move curr
+#         return prev
+#     def isPalindrome(self, head: Optional[ListNode]) -> bool:
+#         if not head or not head.next:
+#             return True
+#         # Step 1: Find middle using slow & fast
+#         slow = fast = head
+#         while fast and fast.next:
+#             slow = slow.next
+#             fast = fast.next.next
+#         # Step 2: Reverse second half
+#         p2 = self.reverseLL(slow)
+#         p1 = head
+#         # Step 3: Compare both halves
+#         while p2:
+#             if p1.val != p2.val:
+#                 return False
+#             p1 = p1.next
+#             p2 = p2.next
+#         return True
+# Example Walkthrough=> Input: 1 → 2 → 2 → 1
+# Step 1: Find middle
+# slow stops at second 2
+# Step 2: Reverse second half
+# 2 → 1 becomes 1 → 2
+# Step 3: Compare
+# 1 == 1 ✅
+# 2 == 2 ✅
+# ➡️ Palindrome → True
