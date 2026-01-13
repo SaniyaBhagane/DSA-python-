@@ -329,3 +329,40 @@
 # Read 2 → not in set → add → {1, 2, 3, 4}
 # Read 2 → already in set ✅ → return 2
 # Output: 2
+
+# Approach 2: Treat the array like a linked list where index → nums[index]. Because one number is duplicated, a cycle is guaranteed. Using slow and fast pointers, we first detect the cycle, then find the entry point — which is the duplicate number.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(1)
+# class Solution:
+#     def findDuplicate(self, nums: List[int]) -> int:
+#         # Phase 1: Detect cycle
+#         slow = 0
+#         fast = 0
+#         while True:
+#             slow = nums[slow]
+#             fast = nums[nums[fast]]
+#             if slow == fast:
+#                 break
+#         # Phase 2: Find entry point of cycle (duplicate)
+#         n1 = 0
+#         n2 = slow
+#         while n1 != n2:
+#             n1 = nums[n1]
+#             n2 = nums[n2]
+#         return n1
+# Example Walkthrough=> Input:nums = [1, 3, 4, 2, 2]
+# Phase 1: Detect Cycle
+# Step	slow = nums[slow]	fast = nums[nums[fast]]
+# start	0	0
+# 1	1	3
+# 2	3	4
+# 3	2	4
+# 4	4	4 ← meet
+# Cycle detected ✔️
+# Phase 2: Find Duplicate
+# n1 = 0  n2 = slow = 4
+# Move both one step at a time:
+# n1	n2
+# nums[0] = 1	nums[4] = 2
+# nums[1] = 3	nums[2] = 4
+# nums[3] = 2	nums[4] = 2 ← meet
+# ✅ Duplicate = 2
