@@ -432,3 +432,39 @@
 # 1 == 1 ✅
 # 2 == 2 ✅
 # ➡️ Palindrome → True
+
+# 2130. Maximum Twin SUm of a Linked List
+# https://leetcode.com/problems/maximum-twin-sum-of-a-linked-list/
+# Approach: Traverse the linked list and store all node values in a list. Then use two pointers on the list—one from the start and one from the end—to compute twin sums and track the maximum.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(n)
+# class Solution:
+#     def pairSum(self, head: Optional[ListNode]) -> int:
+#         arr = []
+#         curr = head
+#         while curr:
+#             arr.append(curr.val)
+#             curr = curr.next
+#         i, j = 0, len(arr) -1
+#         max_sum = 0
+#         while i < j:
+#             max_sum = max(max_sum, arr[i] + arr[j])
+#             i +=1
+#             j -= 1
+#         return max_sum    
+# Example Walkthrough => Input: 5 → 4 → 2 → 1
+# Convert to list → arr = [5, 4, 2, 1]
+# Twin pairs:
+# arr[0] + arr[3] = 5 + 1 = 6
+# arr[1] + arr[2] = 4 + 2 = 6
+# Maximum twin sum = 6
+
+# Approach 2: Use slow and fast pointers to find the middle of the linked list. Reverse the second half of the list, then walk one pointer from the start and one from the reversed half together, computing twin sums and tracking the maximum.
+# COMPLEXITY ANALYSIS: Time= O(n)   Space= O(1)
+class Solution:
+    def pairSum(self, head: Optional[ListNode]) -> int:
+        slow = fast = head 
+        while fast and fast.next:  # Step 1: Find middle
+            slow = slow.next
+            fast = fast.next.next
+        prev = None 
+        curr = slow
