@@ -460,11 +460,36 @@
 
 # Approach 2: Use slow and fast pointers to find the middle of the linked list. Reverse the second half of the list, then walk one pointer from the start and one from the reversed half together, computing twin sums and tracking the maximum.
 # COMPLEXITY ANALYSIS: Time= O(n)   Space= O(1)
-class Solution:
-    def pairSum(self, head: Optional[ListNode]) -> int:
-        slow = fast = head 
-        while fast and fast.next:  # Step 1: Find middle
-            slow = slow.next
-            fast = fast.next.next
-        prev = None 
-        curr = slow
+# class Solution:
+#     def pairSum(self, head: Optional[ListNode]) -> int:
+#         slow = fast = head 
+#         while fast and fast.next:  # Step 1: Find middle
+#             slow = slow.next
+#             fast = fast.next.next
+#         # Step 2: Reverse second half
+#         prev = None 
+#         curr = slow
+#         while curr:
+#             nxt = curr.next
+#             curr.next = prev
+#             prev = curr
+#             curr = nxt
+#          # Step 3: Compute max twin sum
+#         max_sum = 0
+#         p1, p2 = head, prev
+#         while p2:
+#             max_sum = max(max_sum, p1.val + p2.val)
+#             p1 = p1.next
+#             p2 = p2.next
+#         return max_sum
+# Walkthrough (Example) Input: head = [5, 4, 2, 1]
+# Twin pairs:
+# Node 0 & Node 3 → 5 + 1 = 6
+# Node 1 & Node 2 → 4 + 2 = 6
+# Steps:
+# Use slow/fast pointers → slow stops at 2 (middle).
+# Reverse second half → 1 → 2
+# Compare pairs:
+# 5 + 1 = 6
+# 4 + 2 = 6
+# Maximum twin sum = 6
