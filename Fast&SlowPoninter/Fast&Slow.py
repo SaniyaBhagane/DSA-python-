@@ -517,7 +517,30 @@
 #                     break
 #                 curr = next_idx
 #         return False
-
+# Example Used
+# nums = [2, -1, 1, 2, 2]
+# index:  0   1   2   3   4
+# Step 1: Start from index 0
+# nums[0] = 2 → forward direction
+# visited = {}
+# curr = 0
+# Step 2: Move step by step
+# 0 → (0 + 2) % 5 = 2
+# visited = {0}
+# 2 → (2 + 1) % 5 = 3
+# visited = {0, 2}
+# 3 → (3 + 2) % 5 = 0
+# visited = {0, 2, 3}
+# Step 3: Cycle detected
+# Index 0 already visited
+# Direction never changed
+# Cycle length > 1
+# ✅ Valid loop found → return True
+# ❌ When it fails
+# nums = [-1, 2]
+# Index 0 → self-loop
+# Index 1 → self-loop
+# ❌ No valid cycle
 
 # Approach 2: Visited Marking Optimization => This improves brute force by remembering already explored indices globally. Once a path is confirmed invalid, we mark those indices so we don’t reprocess them again.
 # Complexity Analysis: Time: O(n) Space: O(n)
@@ -543,10 +566,21 @@
 #                     break
 #                 curr = next_idx
 #         return False
-# Example Walkthrough=> nums = [-1, 2]
-# Index 0: self-loop → invalid → mark visited
-# Index 1: self-loop → invalid → mark visited
-# ✔ No valid cycle
+# Example Walkthrough=> 
+# nums = [2, -1, 1, 2, 2]
+# index:  0   1   2   3   4
+# Step 1: Start at index 0
+# direction = forward
+# path = {}
+# 0 → 2 → 3 → 0
+# Step 2: Track visited
+# visited = [True, False, True, True, False]
+# path = {0, 2, 3}
+# Step 3: Cycle found
+# Current index already in path
+# Same direction
+# Valid cycle
+# ✅ Return True
 
 # Approach 3: Treat the array like a linked list, where each index points to the next index. Use: Slow pointer → moves 1 step Fast pointer → moves 2 steps. If there is a cycle, both pointers will eventually meet (Floyd’s Cycle Detection) 
 # Complexity Analysis: Time: O(n) Space: O(1)
@@ -573,8 +607,37 @@
 #                         break
 #                     return True
 #         return False
-# Example Walkthrough => nums = [2, -1, 1, 2, 2]
-# From index 0:
-# slow: 0 → 2 → 3
-# fast: 0 → 3 → 0
-# They meet ✔ → valid cycle
+# Example Walkthrough => ugh=> 
+# nums = [2, -1, 1, 2, 2]
+# index:  0   1   2   3   4
+# Step 1: Start from index 0
+# slow = 0
+# fast = 0
+# direction = forward
+# Step 2: First movement
+# slow → (0 + 2) % 5 = 2
+# fast → (0 + 2) % 5 = 2
+# fast → (2 + 1) % 5 = 3
+# State:
+# slow = 2
+# fast = 3
+# Step 3: Second movement
+# slow → (2 + 1) % 5 = 3
+# fast → (3 + 2) % 5 = 0
+# fast → (0 + 2) % 5 = 2
+# State:
+# slow = 3
+# fast = 2
+# Step 4: Third movement
+# slow → (3 + 2) % 5 = 0
+# fast → (2 + 1) % 5 = 3
+# fast → (3 + 2) % 5 = 0
+# State:
+# slow = 0
+# fast = 0
+# slow == fast → cycle detected
+# Step 5: Validate
+# ✔ Direction never changed
+# ✔ Not a self-loop
+# ✔ Cycle length > 1
+# ✅ Return True
