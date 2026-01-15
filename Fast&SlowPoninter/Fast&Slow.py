@@ -505,15 +505,15 @@
 #         for i in range(n):
 #             visited = set()
 #             curr = i
-#             direction = nums[i] > 0
-#             while True:
+#             direction = nums[i] > 0 # True = forward, False = backward
+#             while True: # direction change → invalid
 #                 if (nums[curr] > 0) != direction:
 #                     break
-#                 if curr in visited:
+#                 if curr in visited: # cycle found
 #                     return True
 #                 visited.add(curr)
 #                 next_idx = (curr + nums[curr]) % n
-#                 if next_idx == curr:
+#                 if next_idx == curr: # self-loop (length = 1) → invalid
 #                     break
 #                 curr = next_idx
 #         return False
