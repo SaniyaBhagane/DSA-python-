@@ -493,3 +493,88 @@
 # 5 + 1 = 6
 # 4 + 2 = 6
 # Maximum twin sum = 6
+
+#---------------------------------------------------------------------------------------------------------------------------
+# 457. Circular Array Loop
+
+# Approach 1: For every index, we try to simulate the movement step by step.We keep track of the indices visited only for that starting index. If we ever revisit a previously visited index with the same direction, it means we found a cycle.
+# Complexity Analysis: Time: O(n²) Space: O(n)
+# class Solution:
+#     def circularArrayLoop(self, nums):
+#         n = len(nums)
+#         for i in range(n):
+#             visited = set()
+#             curr = i
+#             direction = nums[i] > 0
+#             while True:
+#                 if (nums[curr] > 0) != direction:
+#                     break
+#                 if curr in visited:
+#                     return True
+#                 visited.add(curr)
+#                 next_idx = (curr + nums[curr]) % n
+#                 if next_idx == curr:
+#                     break
+#                 curr = next_idx
+#         return False
+
+
+# Approach 2: Visited Marking Optimization => This improves brute force by remembering already explored indices globally. Once a path is confirmed invalid, we mark those indices so we don’t reprocess them again.
+# Complexity Analysis: Time: O(n) Space: O(n)
+# class Solution:
+#     def circularArrayLoop(self, nums):
+#         n = len(nums)
+#         visited = [False] * n
+#         for i in range(n):
+#             if visited[i]:
+#                 continue
+#             curr = i
+#             direction = nums[i] > 0
+#             path = set()
+#             while True:
+#                 if visited[curr] or (nums[curr] > 0) != direction:
+#                     break
+#                 if curr in path:
+#                     return True
+#                 path.add(curr)
+#                 visited[curr] = True
+#                 next_idx = (curr + nums[curr]) % n
+#                 if next_idx == curr:
+#                     break
+#                 curr = next_idx
+#         return False
+# Example Walkthrough=> nums = [-1, 2]
+# Index 0: self-loop → invalid → mark visited
+# Index 1: self-loop → invalid → mark visited
+# ✔ No valid cycle
+
+# Approach 3: Treat the array like a linked list, where each index points to the next index. Use: Slow pointer → moves 1 step Fast pointer → moves 2 steps. If there is a cycle, both pointers will eventually meet (Floyd’s Cycle Detection) 
+# Complexity Analysis: Time: O(n) Space: O(1)
+# class Solution:
+#     def circularArrayLoop(self, nums):
+#         n = len(nums)
+#         def next_idx(i):
+#             return (i + nums[i]) % n
+#         for i in range(n):
+#             slow = fast = i
+#             direction = nums[i] > 0
+#             while True:
+#                 slow_next = next_idx(slow)
+#                 fast_next = next_idx(fast)
+#                 fast_next2 = next_idx(fast_next)
+#                 if (nums[slow] > 0) != direction or \
+#                    (nums[fast] > 0) != direction or \
+#                    (nums[fast_next] > 0) != direction:
+#                     break
+#                 slow = slow_next
+#                 fast = fast_next2
+#                 if slow == fast:
+#                     if slow == next_idx(slow):
+#                         break
+#                     return True
+#         return False
+# Example Walkthrough => nums = [2, -1, 1, 2, 2]
+# From index 0:
+# slow: 0 → 2 → 3
+# fast: 0 → 3 → 0
+# They meet ✔ → valid cycle
