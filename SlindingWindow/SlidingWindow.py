@@ -54,3 +54,33 @@
 # Remove 1, add 3 → [5, 1, 3] → sum = 9  ← max
 # Remove 5, add 2 → [1, 3, 2] → sum = 6
 # Answer = 9
+
+# ---------------------------------------------------------------------------------------
+# 2461. Maximum Sum of Distinct Subarrays of Length K
+# https://leetcode.com/problems/maximum-sum-of-distinct-subarrays-with-length-k/
+# Approach: Generate all subarrays of length k, check if all elements are distinct using a list, and if yes, calculate the sum. Track the maximum valid sum. This is slow because we re-check uniqueness every time.
+# Complexity Analysis: Time=>0(n*n) space=> O(1)
+# class Solution:
+#     def maximumSubarraySum(self, nums, k):
+#         n = len(nums)
+#         maxSum = 0
+#         for i in range(n - k + 1):
+#             temp = []
+#             currSum = 0
+#             valid = True
+#             for j in range(i, i+k):
+#                 if nums[j] in temp:
+#                     valid = False
+#                     break
+#                 temp.append(nums[j])
+#                 currSum += nums[j]
+#             if valid:
+#                 maxSum = max(maxSum, currSum)
+#         return maxSum
+# Example Walkthrough=> nums = [1,5,4,2,9,9,9], k = 3
+# [1,5,4] → distinct ✅ sum = 10
+# [5,4,2] → distinct ✅ sum = 11
+# [4,2,9] → distinct ✅ sum = 15 ← max
+# [2,9,9] → duplicate ❌
+# [9,9,9] → duplicate ❌
+# Answer = 15
