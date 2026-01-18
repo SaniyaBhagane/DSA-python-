@@ -138,7 +138,7 @@
 #                     break
 #         return 0 if min_len == float('inf') else min_len
 
-# Approach: Use two pointers to maintain a sliding window.Expand the window to increase the sum and shrink it when the sum ≥ target to minimize the window size efficiently.
+# Approach 2: Use two pointers to maintain a sliding window.Expand the window to increase the sum and shrink it when the sum ≥ target to minimize the window size efficiently.
 # Complexity Analysis: Time=>0(n) space=> O(1)
 # class Solution:
 #     def minSubArrayLen(self, target: int, nums: list[int]) -> int:
