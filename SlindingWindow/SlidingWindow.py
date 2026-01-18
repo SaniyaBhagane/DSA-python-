@@ -84,3 +84,78 @@
 # [2,9,9] → duplicate ❌
 # [9,9,9] → duplicate ❌
 # Answer = 15
+
+# Approach 2: Use a sliding window of size k and a frequency map to track counts of elements. If any element’s count becomes greater than 1, shrink the window from the left. When the window size is exactly k and all elements are unique, update the max sum.
+# Complexity Analysis: Time=>0(n) space=> O(n)
+# class Solution:
+#     def maximumSubarraySum(self, nums, k):
+#         freq = {}
+#         left = 0
+#         currSum = 0
+#         maxSum = 0
+#         for right in range(len(nums)):
+#             freq[nums[right]] = freq.get(nums[right], 0) + 1
+#             currSum += nums[right]
+#             # If duplicate appears, shrink window
+#             while freq[nums[right]]> 1:
+#                 freq[nums[left]] -= 1
+#                 currSum -= nums[left]
+#                 if freq[nums[left]] == 0:
+#                     del freq[nums[left]]
+#                 left += 1
+#             # Window size exactly k
+#             if right - left + 1 == k:
+#                 maxSum = max(maxSum, currSum)
+#                 # Slide window forward
+#                 freq[nums[left]] -= 1
+#                 currSum -= nums[left]
+#                 if freq[nums[left]] == 0:
+#                     del freq[nums[left]]
+#                 left += 1
+#         return maxSum
+# Example Walkthrough => nums = [1,5,4,2,9,9,9], k = 3
+# [1,5,4] → freq valid → sum = 10
+# [5,4,2] → sum = 11
+# [4,2,9] → sum = 15 ✅
+# Duplicate 9 → shrink until unique again
+# Final Answer = 15  
+
+# -----------------------------------------------------------------------------------------------------
+# 209. Minimum Size Subarray Sum
+# https://leetcode.com/problems/minimum-size-subarray-sum/description/
+# Approach: Check every possible subarray, calculate its sum, and track the smallest length whose sum ≥ target. This works but repeats sum calculations unnecessarily, making it inefficient for large inputs.
+# Complexity Analysis: Time=>0(n*n) space=> O(1)
+# class Solution:
+#     def minSubArrayLen(self, target: int, nums: list[int]) -> int:
+#         n = len(nums)
+#         min_len = float('inf')
+#         for i in range(n):
+#             curr_sum = 0
+#             for j in range(i, n):
+#                 curr_sum += nums[j]
+#                 if curr_sum >= target:
+#                     min_len = min(min_len, j - i + 1)
+#                     break
+#         return 0 if min_len == float('inf') else min_len
+
+# Approach: Use two pointers to maintain a sliding window.Expand the window to increase the sum and shrink it when the sum ≥ target to minimize the window size efficiently.
+# Complexity Analysis: Time=>0(n) space=> O(1)
+class Solution:
+    def minSubArrayLen(self, target: int, nums: list[int]) -> int:
+        left = 0
+        curr_sum = 0
+        min_len = float('inf')
+        for right in range(len(nums)):
+            curr_sum += nums[right]
+            while curr_sum >= target:
+                min_len = min(min_len, right - left + 1)
+                curr_sum -= nums[left]
+                left += 1
+        return 0 if min_len == float('inf') else min_len
+# Example Walkthrough
+# Input: target = 7   nums = [2,3,1,2,4,3]
+# Sliding Window Steps:
+# Expand → sum = 8 → window [2,3,1,2]
+# Shrink from left → try smaller windows
+# Best window found → [4,3]
+# Output: 2
