@@ -206,3 +206,26 @@ class Solution:
 # 2	    1	{1}	    add 2 → {1,2}
 # 3	    2	{1,2}	add 3 → {1,2,3}
 # 4	    3	{1,2,3}	1 already present → return True
+
+# -----------------------------------------------------------------------------------
+# 643. Maximun Average Subarray I
+#  https://leetcode.com/problems/maximum-average-subarray-i/description/
+# Approach: Check every subarray of size k, calculate its sum, and keep track of the maximum sum found. Finally, divide the maximum sum by k to get the maximum average.
+# Complexity Analysis: Time: O(n × k)  Space: O(1)
+class Solution:
+    def findMaxAverage(self, nums, k):
+# Example Walkthrough: nums = [1,12,-5,-6,50,3], k = 4
+# Subarray [1,12,-5,-6] → sum = 2
+# Subarray [12,-5,-6,50] → sum = 51
+# Subarray [-5,-6,50,3] → sum = 42
+# Max sum = 51, average = 51 / 4 = 12.75
+
+# Approach: First calculate the sum of the first k elements. Then slide the window by adding the next element and removing the leftmost element. Track the maximum window sum and divide by k at the end.
+# Complexity Analysis: Time: O(n)   Space: O(1)
+class Solution:
+    def findMaxAverage(self, nums, k):
+# Example Walkthrough: nums = [1,12,-5,-6,50,3], k = 4
+# Initial window [1,12,-5,-6] → sum = 2
+# Slide → [12,-5,-6,50] → sum = 51 (max)
+# Slide → [-5,-6,50,3] → sum = 42
+# Max sum = 51, average = 12.75
