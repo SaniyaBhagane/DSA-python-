@@ -184,3 +184,25 @@ class Solution:
 # j = 2 → add 3 → {1,2,3}
 # j = 3 → 1 already in set → duplicate found → return True
 # So the function stops early and returns True.
+
+# Approach 2: We maintain a sliding window of at most k elements using a set. As we move forward, we remove the element that goes out of the window and check if the current element already exists in the set. If it does, a duplicate within distance k is found.
+# Complexity Analysis: Time:O(n)    Space:O(k)
+class Solution:
+    def containsNearbyDuplicate(self, nums, k):
+        n = len(nums)
+        window = set()
+        for i in range(n):
+            if j - i > k:
+                window.remove(nums[i])
+                i +=1
+            if nums[j] in window:
+                return True
+            window.add(nums[j])
+        return False  
+# Example Walkthrough
+# Input: nums = [1, 2, 3, 1], k = 3
+# Step	j	window	Action
+# 1 	0	{}	    add 1 → {1}
+# 2	    1	{1}	    add 2 → {1,2}
+# 3	    2	{1,2}	add 3 → {1,2,3}
+# 4	    3	{1,2,3}	1 already present → return True
