@@ -286,13 +286,13 @@ class Solution:
 #             maxLen = max(maxLen, right - left + 1)
 #         return maxLen
 # Example Walkthrough: Input: "abcabcbb"
-# Step	i	j	Window	Seen Set	maxLen
-# a	0	0	"a"	{a}	1
-# b	0	1	"ab"	{a,b}	2
-# c	0	2	"abc"	{a,b,c}	3
-# a (dup)	1	3	"bca"	{b,c,a}	3
-# b (dup)	2	4	"cab"	{c,a,b}	3
-# c (dup)	3	5	"abc"	{a,b,c}	3
-# b (dup)	5	6	"cb"	{c,b}	3
-# b (dup)	6	7	"b"	{b}	3
+# Step	    i	j	Window	Seen    Set	maxLen
+# a	        0	0	"a"	    {a}	     1
+# b 	    0	1	"ab"	{a,b}    2
+# c 	    0	2	"abc"	{a,b,c}	 3
+# a(dup)	1	3	"bca"	{b,c,a}	 3
+# b(dup)	2	4	"cab"	{c,a,b}	 3
+# c(dup)	3	5	"abc"	{a,b,c}  3
+# b(dup)	5	6	"cb"	{c,b}	 3
+# b(dup)	6	7	"b"	    {b}	     3
 # ✔️ Answer = 3
