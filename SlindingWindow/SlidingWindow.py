@@ -269,3 +269,30 @@ class Solution:
 # i = 2
 # c → ca → cab (length = 3)
 # Final answer = 3
+
+# Approach 2: We maintain a window with two pointers (left, right) that always contains unique characters. As we expand right, if a duplicate appears, we shrink the window from the left until the duplicate is removed. At each step, update the maximum window length.
+# Complexity Analysis: Time: O(n) → each character added & removed once  Space: O(n) → set for unique characters
+# class Solution:
+#     def lengthOfLongestSubstring(self, s: str) -> int:
+#         seen = set()
+#         left = 0
+#         maxLen = 0
+#         for right in range(len(s)):
+#             # Shrink window until duplicate is removed
+#             while s[right] in seen:
+#                 seen.remove(s[left])
+#                 left += 1
+#             seen.add(s[right])
+#             maxLen = max(maxLen, right - left + 1)
+#         return maxLen
+# Example Walkthrough: Input: "abcabcbb"
+# Step	i	j	Window	Seen Set	maxLen
+# a	0	0	"a"	{a}	1
+# b	0	1	"ab"	{a,b}	2
+# c	0	2	"abc"	{a,b,c}	3
+# a (dup)	1	3	"bca"	{b,c,a}	3
+# b (dup)	2	4	"cab"	{c,a,b}	3
+# c (dup)	3	5	"abc"	{a,b,c}	3
+# b (dup)	5	6	"cb"	{c,b}	3
+# b (dup)	6	7	"b"	{b}	3
+# ✔️ Answer = 3
