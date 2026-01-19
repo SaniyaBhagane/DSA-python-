@@ -243,3 +243,29 @@ class Solution:
 # Slide → [12,-5,-6,50] → sum = 51 (max)
 # Slide → [-5,-6,50,3] → sum = 42
 # Max sum = 51, average = 12.75
+
+# -------------------------------------------------------------------------------------------------------------------------------
+# 3. Longest Substring witthout Repeating CHaracters
+#  https://leetcode.com/problems/longest-substring-without-repeating-characters/description/
+# Approach: For every starting index i, expand the substring to the right until a duplicate character is found. Use a set to track unique characters and update the maximum length.
+# Complexity Analysis: Time=O(n^2) Space=O(n)
+# class Solution:
+#     def lengthOfLongestSubstring(self, s: str) -> int:
+#         maxLen = 0
+#         for i in range(len(s)):
+#             seen = set()
+#             for j in range(i, len(s)):
+#                 if s[j] in seen:
+#                     break
+#                 seen.add(s[j])
+#                 maxLen = max(maxLen, j - i + 1)
+#         return maxLen
+# Example Walkthrough: Input: "abcabcbb"
+# i = 0
+# a → ab → abc (unique, length = 3)
+# next a → duplicate → stop
+# i = 1
+# b → bc → bca (length = 3)
+# i = 2
+# c → ca → cab (length = 3)
+# Final answer = 3
