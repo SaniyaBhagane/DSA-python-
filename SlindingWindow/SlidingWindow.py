@@ -475,9 +475,17 @@ class Solution:
 # i = 2 → [1,2] → length 2
 # ✔️ Final Answer = 4
 
-# Approach: 
-# Complexty Analysis: Time: Space:
+# Approach: Hum sliding window use karte hain jisme window ke andar sirf 2 fruit types allowed hain. Right pointer expand karta hai, aur agar 2 se zyada types aa gaye toh left pointer se shrink karte hain. Har valid window pe maximum length update karte rehte hain.
+# Complexty Analysis: Time:O(n) Space:O(1)
+# Walkthrough:
+# Input: fruits = [1, 2, 1, 2, 3]
+# i	j	window	count	valid?	max
+# 0	0	[1]	{1:1}	✅	1
+# 0	1	[1,2]	{1:1,2:1}	✅	2
+# 0	2	[1,2,1]	{1:2,2:1}	✅	3
+# 0	3	[1,2,1,2]	{1:2,2:2}	✅	4
+# 0	4	[1,2,1,2,3]	{1,2,3}	❌	shrink
+# 2	4	[1,2,3]	{1,2,3}	❌	shrink
+# 3	4	[2,3]	{2,3}	✅	4
+# ✔️ Answer = 4
 
-
-# Approach: 
-# Complexty Analysis: Time: Space:
