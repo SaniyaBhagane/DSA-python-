@@ -344,3 +344,15 @@ class Solution:
 # ["AAAAAAAAAA"]
 
 # Approach: Sliding Window + Rabin–Karp: We slide a window of length 10 across the string and compute a rolling hash for each substring instead of slicing strings repeatedly. Each character (A, C, G, T) is mapped to a number, and the hash is updated in O(1) time when the window moves. If a hash repeats, the corresponding substring is added to the answer.
+# Complexity:  Time: O(n)  Space: O(n)
+# Example Walkthrough: Input  s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+# Rolling Window (size = 10)
+# Window	Substring	Action
+# 0–9	AAAAACCCCC	Hash stored
+# 1–10	AAAACCCCCA	Hash stored
+# ...	...	...
+# 10–19	AAAAACCCCC	Hash repeats → add to result
+# 15–24	CCCCCAAAAA	Hash repeats → add to result
+# Output
+# ["AAAAACCCCC", "CCCCCAAAAA"]
+
