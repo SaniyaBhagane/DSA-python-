@@ -294,5 +294,53 @@ class Solution:
 # b(dup)	2	4	"cab"	{c,a,b}	 3
 # c(dup)	3	5	"abc"	{a,b,c}  3
 # b(dup)	5	6	"cb"	{c,b}	 3
-# b(dup)	6	7	"b"	    {b}	     3
+# b(dup)	6	7	"b"	    {b}	    3
 # ✔️ Answer = 3
+
+# ----------------------------------------------------------------------------------------------------------------------
+# 187. Repeated DNA Sequence
+# https://leetcode.com/problems/repeated-dna-sequences/description/
+# You’re given a string s representing a DNA sequence made up of letters 'A', 'C', 'G', and 'T'. Return all the 10-letter long sequences (substrings) that occur more than once in the string.
+# Approach: Try every substring of length 10, add it to a list or map to count occurrences, then return those that appear more than once.
+# Complexity: Time: O((n-10+1) × 10) → O(n)   Space: O(n)
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        seen = {}
+        result = set()
+        for i in range(len(s) - 10 + 1):
+            seq = s[i:i+10]
+            if seq in seen:
+                seen[seq] += 1
+                if seen[seq] == 2:
+                    result.add(seq)
+            else:
+                seen[seq] = 1
+        return list(result)
+# Example Walkthrough: Input: s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+# Substrings of length 10:
+# "AAAAACCCCC" → count = 2  
+# "CCCCCAAAAA" → count = 2  
+# ...
+# Output: ["AAAAACCCCC","CCCCCAAAAA"]
+
+# Approach 2: Use a hash set to keep track of sequences seen once and another set for sequences already added to the result. Slide a 10-length window over the string. When a sequence is seen the second time, add to the result set.
+# Complexity: Time: O((n-10+1) × 10) → O(n)   Space: O(n)
+class Solution:
+    def findRepeatedDnaSequences(self, s: str) -> List[str]:
+        seen = set()
+        repeated = set()
+        for i in range(len(s) - 9):
+            seq = s[i:i+10]
+            if seq in seen:
+                repeated.add(seq)
+            else:
+                seen.add(seq)
+        return list(repeated)
+# Example:  Input: "AAAAAAAAAAA"
+# Substrings of length 10:
+# "AAAAAAAAAA" (from idx 0)
+# "AAAAAAAAAA" (from idx 1)
+# The substring "AAAAAAAAAA" repeats → output:
+# ["AAAAAAAAAA"]
+
+# Approach: Sliding Window + Rabin–Karp: We slide a window of length 10 across the string and compute a rolling hash for each substring instead of slicing strings repeatedly. Each character (A, C, G, T) is mapped to a number, and the hash is updated in O(1) time when the window moves. If a hash repeats, the corresponding substring is added to the answer.
