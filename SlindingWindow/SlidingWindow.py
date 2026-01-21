@@ -448,3 +448,36 @@ class Solution:
 # Same 20-bit mask appears
 # Added to repeated
 # Final Output ["AAAAACCCCC", "CCCCCAAAAA"]
+
+# --------------------------------------------------------------------------------------
+# 904. Fruit Into Baskets
+# https://leetcode.com/problems/fruit-into-baskets/
+# Approach: Start from every index i, keep adding fruits until more than 2 distinct types appear. Track the longest valid subarray.
+# Complexty Analysis: Time:O(n²) Space:O(1)
+class Solution:
+    def totalFruit(self, fruits: List[int]) -> int:
+        maxFruits = 0
+        n = len(fruits)
+        for i in range(n):
+            seen = set()
+            for j in range(i, n):
+                seen.add(fruits[j])
+                if len(seen) > 2:
+                    break
+                maxFruits = max(maxFruits, j - i + 1)
+        return maxFruits
+# Example (Brute Force)
+# Input: fruits = [1, 2, 1, 2, 3]
+# i = 0 → [1,2,1,2] ✅ (2 types)
+# i = 0 → [1,2,1,2,3] ❌ (3 types → stop)
+# max = 4
+# i = 1 → [2,1,2] → length 3
+# i = 2 → [1,2] → length 2
+# ✔️ Final Answer = 4
+
+# Approach: 
+# Complexty Analysis: Time: Space:
+
+
+# Approach: 
+# Complexty Analysis: Time: Space:
