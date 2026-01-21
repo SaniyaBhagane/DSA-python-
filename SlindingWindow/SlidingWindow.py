@@ -345,6 +345,31 @@ class Solution:
 
 # Approach: Sliding Window + Rabin–Karp: We slide a window of length 10 across the string and compute a rolling hash for each substring instead of slicing strings repeatedly. Each character (A, C, G, T) is mapped to a number, and the hash is updated in O(1) time when the window moves. If a hash repeats, the corresponding substring is added to the answer.
 # Complexity:  Time: O(n)  Space: O(n)
+class Solution:
+    def findRepeatedDnaSequences(self, s: str):
+        if len(s) < 10:
+            return []
+        # Map DNA characters to numbers
+        mapping = {'A': 1, 'C': 2, 'G': 3, 'T': 4}
+        base = 4
+        mod = 10**9 + 7
+        hash_val = 0
+        seen = set()
+        repeated = set()
+        power = pow(base, 9, mod)  # base^(window_size - 1)
+        for i in range(len(s)):
+            # Add new character to rolling hash
+            hash_val = (hash_val * base + mapping[s[i]]) % mod
+            # Remove leftmost character when window exceeds size 10
+            if i >= 10:
+                hash_val = (hash_val - mapping[s[i - 10]] * power) % mod
+            # Window size is exactly 10
+            if i >= 9:
+                if hash_val in seen:
+                    repeated.add(s[i - 9 : i + 1])
+                else:
+                    seen.add(hash_val)
+        return list(repeated)
 # Example Walkthrough: Input  s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
 # Rolling Window (size = 10)
 # Window	Substring	Action
@@ -356,3 +381,4 @@ class Solution:
 # Output
 # ["AAAAACCCCC", "CCCCCAAAAA"]
 
+# Approach (Bitmask): Since DNA has only 4 characters, each can be encoded using 2 bits. We slide a window of size 10 and maintain a 20-bit integer using bit shifting. Each window’s bitmask uniquely represents the substring, so if a mask repeats, the substring is repeated.
