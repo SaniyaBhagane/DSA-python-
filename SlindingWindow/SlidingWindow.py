@@ -319,7 +319,7 @@ class Solution:
 # 3	a	2	ba	2
 # ✔️ Answer = 2
 
-# ----------------------------------------------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------------
 # 187. Repeated DNA Sequence
 # https://leetcode.com/problems/repeated-dna-sequences/description/
 # You’re given a string s representing a DNA sequence made up of letters 'A', 'C', 'G', and 'T'. Return all the 10-letter long sequences (substrings) that occur more than once in the string.
@@ -493,13 +493,13 @@ class Solution:
         return maxFruits
 # Walkthrough:
 # Input: fruits = [1, 2, 1, 2, 3]
-# i	j	window	count	valid?	max
-# 0	0	[1]	{1:1}	✅	1
-# 0	1	[1,2]	{1:1,2:1}	✅	2
-# 0	2	[1,2,1]	{1:2,2:1}	✅	3
-# 0	3	[1,2,1,2]	{1:2,2:2}	✅	4
-# 0	4	[1,2,1,2,3]	{1,2,3}	❌	shrink
-# 2	4	[1,2,3]	{1,2,3}	❌	shrink
-# 3	4	[2,3]	{2,3}	✅	4
+# i	j	window	count	        valid?	max
+# 0	0	[1]	    {1:1}	          ✅	    1
+# 0	1	[1,2]	{1:1,2:1}	      ✅	    2
+# 0	2	[1,2,1]	{1:2,2:1}	      ✅    	3
+# 0	3	[1,2,1,2]	{1:2,2:2}     ✅    	4
+# 0	4	[1,2,1,2,3]	{1,2,3}	      ❌	shrink
+# 2	4	[1,2,3]	{1,2,3}	          ❌	shrink
+# 3	4	[2,3]	{2,3}	          ✅	    4
 # ✔️ Answer = 4
 
