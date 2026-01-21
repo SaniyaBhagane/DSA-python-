@@ -297,6 +297,28 @@ class Solution:
 # b(dup)	6	7	"b"	    {b}	    3
 # ✔️ Answer = 3
 
+# Approach: Hum sliding window use karte hain with two pointers i and j.Agar koi character repeat hota hai aur current window ke andar hai, toh left pointer i ko uske last index + 1 pe shift kar dete hain. Har step pe window length update karte hain.
+# Complexity:  Time: O(n)  Space: O(n)
+class Solution:
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        char_index = {}   # stores last index of each character
+        max_len = 0
+        i = 0             # left pointer
+        for j in range(len(s)):  # right pointer
+            c = s[j]
+            if c in char_index and char_index[c] >= i:
+                i = char_index[c] + 1   # move left pointer
+            char_index[c] = j
+            max_len = max(max_len, j - i + 1)
+        return max_len
+# Example: "abba"
+# j	char	i	window	max
+# 0	a	0	a	1
+# 1	b	0	ab	2
+# 2	b	2	b	2
+# 3	a	2	ba	2
+# ✔️ Answer = 2
+
 # ----------------------------------------------------------------------------------------------------------------------
 # 187. Repeated DNA Sequence
 # https://leetcode.com/problems/repeated-dna-sequences/description/
@@ -382,3 +404,47 @@ class Solution:
 # ["AAAAACCCCC", "CCCCCAAAAA"]
 
 # Approach (Bitmask): Since DNA has only 4 characters, each can be encoded using 2 bits. We slide a window of size 10 and maintain a 20-bit integer using bit shifting. Each window’s bitmask uniquely represents the substring, so if a mask repeats, the substring is repeated.
+# Complexity:  Time: O(n)  Space: O(n)
+class Solution:
+    def findRepeatedDnaSequences(self, s: str):
+        if len(s) < 10:
+            return []
+        # 2-bit encoding
+        mapping = {
+            'A': 0,  # 00
+            'C': 1,  # 01
+            'G': 2,  # 10
+            'T': 3   # 11
+        }
+        seen = set()
+        repeated = set()
+        mask = 0
+        WINDOW_MASK = (1 << 20) - 1  # keep last 20 bits
+        for i in range(len(s)):
+            # Shift left by 2 bits and add new char
+            mask = ((mask << 2) | mapping[s[i]]) & WINDOW_MASK
+            # Start checking once window size is 10
+            if i >= 9:
+                if mask in seen:
+                    repeated.add(s[i - 9 : i + 1])
+                else:
+                    seen.add(mask)
+        return list(repeated)
+# Example Walkthrough:
+# Input
+# s = "AAAAACCCCCAAAAACCCCCCAAAAAGGGTTT"
+# Encoding Example
+# A → 00
+# C → 01
+# G → 10
+# T → 11
+# First Window: "AAAAACCCCC"
+# Binary:
+# 00 00 00 00 00 01 01 01 01 01
+# ↓
+# 00000000000101010101   (20 bits)
+# → Stored in seen
+# Later Window: "AAAAACCCCC" (again)
+# Same 20-bit mask appears
+# Added to repeated
+# Final Output ["AAAAACCCCC", "CCCCCAAAAA"]
