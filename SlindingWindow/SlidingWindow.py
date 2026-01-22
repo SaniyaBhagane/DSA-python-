@@ -534,3 +534,26 @@ class Solution:
 
 # Approach: First compute the sum of the initial window of size k, then slide the window to the right by adding the next element and removing the leftmost one. This avoids recomputing sums and efficiently checks all subarrays in linear time.
 # Complexity: Time: O(n)  Space: O(1)
+class Solution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        target = k * threshold
+        window_sum = sum(arr[:k])
+        count = 0
+        if window_sum >= target:
+            count += 1
+        for i in range(k, len(arr)):
+            window_sum += arr[i]
+            window_sum -= arr[i - k]
+            if window_sum >= target:
+                count += 1        
+        return count
+# Walkthrough
+# Initial window:
+# [2,2,2] → sum = 6 ❌
+# Slide step by step:
+# Add	Remove	Window	Sum	Valid
+# +2	-2	[2,2,2]	    6	❌
+# +5	-2	[2,2,5]	    9	❌
+# +5	-2	[2,5,5]	    12	✅
+# +5	-2	[5,5,5]	    15	✅
+# +8	-5	[5,5,8]	    18	✅
