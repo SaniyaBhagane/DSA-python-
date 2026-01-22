@@ -503,3 +503,34 @@ class Solution:
 # 3	4	[2,3]	{2,3}	          ✅	    4
 # ✔️ Answer = 4
 
+# ------------------------------------------------------------------------------
+# 1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+# Problem : Count the number of subarrays of size k whose average ≥ threshold 👉 Average ≥ threshold ⇔ sum ≥ k × threshold
+# Approach : Check every contiguous subarray of size k by calculating its sum from scratch and compare it with k × threshold. Count how many such subarrays satisfy the condition. This is simple but inefficient due to repeated sum calculations.
+# Complexity: Time: O(n*k)  Space: O(1)
+class Solution:
+    def numOfSubarrays(self, arr: List[int], k: int, threshold: int) -> int:
+        target = k * threshold
+        count = 0
+        for i in range(len(arr) - k + 1):
+            curr_sum = 0
+            for j in range(i, i + k):
+                curr_sum += arr[j]
+            if curr_sum >= target:
+                count += 1        
+        return count
+# Example
+# arr = [2,2,2,2,5,5,5,8]
+# k = 3, threshold = 4
+# target = 12
+# Window	Elements	Sum	Valid
+# 0–2 	[2,2,2]	     6	❌
+# 1–3	    [2,2,2]	     6	❌
+# 2–4	    [2,2,5]	     9	❌
+# 3–5	    [2,5,5]	    12	✅
+# 4–6	    [5,5,5]	    15	✅
+# 5–7	    [5,5,8]	    18	✅
+# ✅ Answer = 3
+
+# Approach: First compute the sum of the initial window of size k, then slide the window to the right by adding the next element and removing the leftmost one. This avoids recomputing sums and efficiently checks all subarrays in linear time.
+# Complexity: Time: O(n)  Space: O(1)
