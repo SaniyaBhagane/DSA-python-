@@ -505,6 +505,7 @@ class Solution:
 
 # ------------------------------------------------------------------------------
 # 1343. Number of Sub-arrays of Size K and Average Greater than or Equal to Threshold
+# https://leetcode.com/problems/number-of-sub-arrays-of-size-k-and-average-greater-than-or-equal-to-threshold/description/
 # Problem : Count the number of subarrays of size k whose average ≥ threshold 👉 Average ≥ threshold ⇔ sum ≥ k × threshold
 # Approach : Check every contiguous subarray of size k by calculating its sum from scratch and compare it with k × threshold. Count how many such subarrays satisfy the condition. This is simple but inefficient due to repeated sum calculations.
 # Complexity: Time: O(n*k)  Space: O(1)
@@ -561,6 +562,7 @@ class Solution:
 # -------------------------------------------------------------------------------------
 # 1838. Frequency of the Most Frequent Element
 # https://leetcode.com/problems/frequency-of-the-most-frequent-element/description/
+# Approach: First, sort the array so smaller elements can be increased to match larger ones. For each starting index i, expand the subarray to the right (j) and calculate the total operations needed to make all elements equal to nums[j] using cost = nums[j] * window_size − window_sum. If the cost exceeds k, stop expanding; otherwise, update the maximum frequency.
 # Complexity: Time:O(n^2) Space: O(sortingspace complexity)
 class Solution:
     def maxFrequency(self, nums: List[int], k: int) -> int:
