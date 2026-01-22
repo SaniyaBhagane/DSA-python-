@@ -524,7 +524,7 @@ class Solution:
 # k = 3, threshold = 4
 # target = 12
 # Window	Elements	Sum	Valid
-# 0–2 	[2,2,2]	     6	❌
+# 0–2 	    [2,2,2]	     6	❌
 # 1–3	    [2,2,2]	     6	❌
 # 2–4	    [2,2,5]	     9	❌
 # 3–5	    [2,5,5]	    12	✅
