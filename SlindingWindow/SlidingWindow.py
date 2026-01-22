@@ -557,3 +557,83 @@ class Solution:
 # +5	-2	[2,5,5]	    12	✅
 # +5	-2	[5,5,5]	    15	✅
 # +8	-5	[5,5,8]	    18	✅
+
+# -------------------------------------------------------------------------------------
+# 1838. Frequency of the Most Frequent Element
+# https://leetcode.com/problems/frequency-of-the-most-frequent-element/description/
+# Complexity: Time:O(n^2) Space: O(sortingspace complexity)
+class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        nums.sort()
+        maxS = 0
+        for i in range(len(nums)):
+            fSum = 0
+            for j in range(i, len(nums)):
+                fSum += nums[j]
+                total = nums[j] * (j - i + 1)
+                cost = total - fSum
+                if cost > k:
+                    break
+                maxS = max(maxS, j - i + 1)      
+        return maxS
+# Example
+# nums = [1, 2, 4]  k = 5
+# After sorting: nums = [1, 2, 4]
+# Step-by-step
+# i = 0   j = 0
+# Window: [1]
+# Sum = 1
+# Cost = 1*1 - 1 = 0 ✅
+# max = 1   j = 1
+# Window: [1,2]
+# Sum = 3
+# Cost = 2*2 - 3 = 1 ✅
+# max = 2  j = 2
+# Window: [1,2,4]
+# Sum = 7
+# Cost = 4*3 - 7 = 5 ✅
+# max = 3
+# i = 1  j = 1
+# Window: [2] → cost = 0 ✅
+# j = 2
+# Window: [2,4]
+# Cost = 4*2 - 6 = 2 ✅
+# i = 2    j = 2
+# Window: [4] → cost = 0 ✅
+# Maximum frequency = 3
+
+# Approach: Sort the array and use a sliding window where we try to make all elements equal to the rightmost value. Maintain the sum of the window to calculate how many increments are needed. If the required operations exceed k, shrink the window from the left. Key Formula: cost = nums[right] * window_size - window_sum
+# Complexity: Time: O(n log n) (sorting) Space: O(1)
+class Solution:
+    def maxFrequency(self, nums: List[int], k: int) -> int:
+        maxS = 0
+        nums.sort()
+        fSum = 0
+        i = j = 0
+        while j < len(nums):
+            fSum += nums[j]
+            while nums[j] * (j - i + 1) - fSum > k:
+                fSum -= nums[i]
+                i += 1
+            maxS = max(maxS, j - i + 1)
+            j += 1
+        return maxS
+# Example
+# nums = [1, 2, 4]  k = 5
+# After sorting: nums = [1, 2, 4]
+# Step-by-step
+# right = 0
+# Window: [1]
+# Sum = 1
+# Cost = 1*1 - 1 = 0 ✅
+# max = 1   right = 1
+# Window: [1,2]
+# Sum = 3
+# Cost = 2*2 - 3 = 1 ✅
+# max = 2  right = 2
+# Window: [1,2,4]
+# Sum = 7
+# Cost = 4*3 - 7 = 5 ✅
+# max = 3
+# Window never becomes invalid, so no shrinking needed.
+# Maximum frequency = 3
