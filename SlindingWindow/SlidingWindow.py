@@ -641,3 +641,21 @@ class Solution:
 # Maximum frequency = 3
 
 # --------------------------------------------------------------------------------------------------------
+# 424. Longest Repeating Character Replacement
+# Approach: For each starting index, extend the substring to the right and maintain character frequencies. At each step, compute how many characters need to be replaced to make all characters the same. If replacements exceed k, stop expanding and track the maximum valid substring length.
+# Complexity: Time: O(n²)   Space: O(1)
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        maxString = 0  
+        for i in range(len(s)):
+            counts = [0] * 26     # frequency of characters
+            maxC = 0             # max frequency in current window
+            for j in range(i, len(s)):
+                idx = ord(s[j]) - ord('A')
+                counts[idx] += 1
+                maxC = max(maxC, counts[idx])
+                ops = (j - i + 1) - maxC  # replacements needed
+                if ops > k:
+                    break
+                maxString = max(maxString, j - i + 1)        
+        return maxString
