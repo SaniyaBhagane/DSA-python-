@@ -642,6 +642,7 @@ class Solution:
 
 # --------------------------------------------------------------------------------------------------------
 # 424. Longest Repeating Character Replacement
+# https://leetcode.com/problems/longest-repeating-character-replacement/
 # Approach: For each starting index, extend the substring to the right and maintain character frequencies. At each step, compute how many characters need to be replaced to make all characters the same. If replacements exceed k, stop expanding and track the maximum valid substring length.
 # Complexity: Time: O(n²)   Space: O(1)
 class Solution:
@@ -659,3 +660,61 @@ class Solution:
                     break
                 maxString = max(maxString, j - i + 1)        
         return maxString
+# Example
+# s = "AABABBA"  k = 1
+# Step-by-step
+# i = 0
+# j = 0 → "A"
+# freq: A=1 → replacements = 1−1 = 0 ✅
+# max = 1
+# j = 1 → "AA"
+# freq: A=2 → replacements = 2−2 = 0 ✅
+# max = 2
+# j = 2 → "AAB"
+# freq: A=2, B=1 → replacements = 3−2 = 1 ✅
+# max = 3
+# j = 3 → "AABA"
+# freq: A=3 → replacements = 4−3 = 1 ✅
+# max = 4
+# j = 4 → "AABAB"
+# freq: A=3, B=2 → replacements = 5−3 = 2 ❌ → stop
+# i = 1
+# "ABAB" → replacements exceed k at length 4 ❌
+# i = 2
+# "BAB" → replacements = 1 ✅ (Other starts don’t exceed length 4)
+# Answer = 4
+
+# Approach: Use a sliding window while tracking character frequencies and the highest frequency in the window. If the number of replacements needed exceeds k, shrink the window from the left. The maximum valid window size gives the answer.
+# Complexity: Time: O(n)   Space: O(1)
+class Solution:
+    def characterReplacement(self, s: str, k: int) -> int:
+        count = [0] * 26
+        left = 0
+        maxFreq = 0
+        ans = 0
+        for right in range(len(s)):
+            idx = ord(s[right]) - ord('A')
+            count[idx] += 1
+            maxFreq = max(maxFreq, count[idx])
+            # If replacements needed exceed k, shrink window
+            while (right - left + 1) - maxFreq > k:
+                count[ord(s[left]) - ord('A')] -= 1
+                left += 1
+            ans = max(ans, right - left + 1)        
+        return ans
+# Example
+# s = "AABABBA"  k = 1
+# Step-by-step
+# right	char	window	maxFreq	replacements	action
+# 0	A	A	1	0	valid
+# 1	A	AA	2	0	valid
+# 2	B	AAB	2	1	valid
+# 3	A	AABA	3	1	valid
+# 4	B	AABAB	3	2	shrink
+# 		ABAB	2	2	shrink
+# 		BAB	2	1	valid
+# 5	B	BABB	3	1	valid
+# 6	A	BABBA	3	2	shrink → valid
+# Window sizes checked
+# Max valid window = 4
+# Answer = 4
