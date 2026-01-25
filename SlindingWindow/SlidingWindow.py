@@ -165,14 +165,14 @@
 # https://leetcode.com/problems/contains-duplicate-ii/description/
 # Approach: For each index i, we look ahead up to k positions and check whether the same number appears again within this range. A set is used to track elements in the current window so duplicates can be detected quickly. If any duplicate is found within distance k, we return True; otherwise, after all checks, return False.
 # Complexity Analysis: Time Complexity: O(n × k) Space Complexity: O(k) 
-class Solution:
-    def containsNearbyDuplicate(self, nums, k):
-        n = len(nums)
-        for i in range(n):
-            for j in range(i + 1, min(i + k + 1, n)):
-                if nums[i] == nums[j]:
-                    return True
-        return False
+# class Solution:
+#     def containsNearbyDuplicate(self, nums, k):
+#         n = len(nums)
+#         for i in range(n):
+#             for j in range(i + 1, min(i + k + 1, n)):
+#                 if nums[i] == nums[j]:
+#                     return True
+#         return False
 # Example Walkthrough
 # Input: nums = [1, 2, 3, 1], k = 3
 # i = 0, window indices 0 → 3
