@@ -185,18 +185,18 @@
 
 # Approach 2: We maintain a sliding window of at most k elements using a set. As we move forward, we remove the element that goes out of the window and check if the current element already exists in the set. If it does, a duplicate within distance k is found.
 # Complexity Analysis: Time:O(n)    Space:O(k)
-class Solution:
-    def containsNearbyDuplicate(self, nums, k):
-        window = set()
-        for i in range(len(nums)):
-            # If current number already in window → duplicate within k
-            if nums[i] in window:
-                return True
-            window.add(nums[i])
-            # Keep window size at most k
-            if len(window) > k:
-                window.remove(nums[i - k])
-        return False
+# class Solution:
+#     def containsNearbyDuplicate(self, nums, k):
+#         window = set()
+#         for i in range(len(nums)):
+#             # If current number already in window → duplicate within k
+#             if nums[i] in window:
+#                 return True
+#             window.add(nums[i])
+#             # Keep window size at most k
+#             if len(window) > k:
+#                 window.remove(nums[i - k])
+#         return False
 # Example Walkthrough
 # Input: nums = [1, 2, 3, 1], k = 3
 # Step	j	window	Action
