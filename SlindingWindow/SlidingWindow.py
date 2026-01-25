@@ -187,16 +187,16 @@
 # Complexity Analysis: Time:O(n)    Space:O(k)
 class Solution:
     def containsNearbyDuplicate(self, nums, k):
-        n = len(nums)
         window = set()
-        for i in range(n):
-            if j - i > k:
-                window.remove(nums[i])
-                i +=1
-            if nums[j] in window:
+        for i in range(len(nums)):
+            # If current number already in window → duplicate within k
+            if nums[i] in window:
                 return True
-            window.add(nums[j])
-        return False  
+            window.add(nums[i])
+            # Keep window size at most k
+            if len(window) > k:
+                window.remove(nums[i - k])
+        return False
 # Example Walkthrough
 # Input: nums = [1, 2, 3, 1], k = 3
 # Step	j	window	Action
