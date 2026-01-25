@@ -169,11 +169,9 @@ class Solution:
     def containsNearbyDuplicate(self, nums, k):
         n = len(nums)
         for i in range(n):
-            seen = set()
-            for j in range(i, min(i+k-1), n):
-                if nums[j] in seen:
+            for j in range(i + 1, min(i + k + 1, n)):
+                if nums[i] == nums[j]:
                     return True
-                seen.add(nums[j])
         return False
 # Example Walkthrough
 # Input: nums = [1, 2, 3, 1], k = 3
@@ -706,15 +704,15 @@ class Solution:
 # s = "AABABBA"  k = 1
 # Step-by-step
 # right	char	window	maxFreq	replacements	action
-# 0	A	A	1	0	valid
-# 1	A	AA	2	0	valid
-# 2	B	AAB	2	1	valid
-# 3	A	AABA	3	1	valid
-# 4	B	AABAB	3	2	shrink
-# 		ABAB	2	2	shrink
-# 		BAB	2	1	valid
-# 5	B	BABB	3	1	valid
-# 6	A	BABBA	3	2	shrink → valid
+# 0	    A   	A	    1	        0	        valid
+# 1 	A	    AA	    2	        0	        valid
+# 2	    B	    AAB	    2       	1	        valid
+# 3	    A	    AABA	3       	1       	valid
+# 4	    B	    AABAB	3	        2	        shrink
+# 		        ABAB	2	        2	        shrink
+# 		        BAB	    2	        1       	valid
+# 5	    B	    BABB	3	        1	        valid
+# 6	    A	    BABBA	3	        2	        shrink → valid
 # Window sizes checked
 # Max valid window = 4
-# Answer = 4
+# Answer =  4
