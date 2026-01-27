@@ -214,8 +214,8 @@ class Solution:
     def findMaxAverage(self, nums, k):
         maxSum = float('-inf')
         for i in range(len(nums) - k + 1):
-            currSum = 0 
-            for j in range(i, i+1):
+            currSum = 0
+            for j in range(i, i + k):
                 currSum += nums[j]
             maxSum = max(maxSum, currSum)
         return maxSum / k
