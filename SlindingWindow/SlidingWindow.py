@@ -210,15 +210,15 @@
 #  https://leetcode.com/problems/maximum-average-subarray-i/description/
 # Approach: Check every subarray of size k, calculate its sum, and keep track of the maximum sum found. Finally, divide the maximum sum by k to get the maximum average.
 # Complexity Analysis: Time: O(n × k)  Space: O(1)
-class Solution:
-    def findMaxAverage(self, nums, k):
-        maxSum = float('-inf')
-        for i in range(len(nums) - k + 1):
-            currSum = 0
-            for j in range(i, i + k):
-                currSum += nums[j]
-            maxSum = max(maxSum, currSum)
-        return maxSum / k
+# class Solution:
+#     def findMaxAverage(self, nums, k):
+#         maxSum = float('-inf')
+#         for i in range(len(nums) - k + 1):
+#             currSum = 0
+#             for j in range(i, i + k):
+#                 currSum += nums[j]
+#             maxSum = max(maxSum, currSum)
+#         return maxSum / k
 # Example Walkthrough: nums = [1,12,-5,-6,50,3], k = 4
 # Subarray [1,12,-5,-6] → sum = 2
 # Subarray [12,-5,-6,50] → sum = 51
@@ -229,11 +229,11 @@ class Solution:
 # Complexity Analysis: Time: O(n)   Space: O(1)
 class Solution:
     def findMaxAverage(self, nums, k):
-        windowSum = sum(nums[::k])
+        windowSum = sum(nums[:k])
         maxSum = windowSum
         for i in range(k, len(nums)):
-            windowSum += nums[i] # add next element
-            windowSum -= nums[i-k] # remove leftmost element
+            windowSum += nums[i]
+            windowSum -= nums[i - k]
             maxSum = max(maxSum, windowSum)
         return maxSum / k
 # Example Walkthrough: nums = [1,12,-5,-6,50,3], k = 4
