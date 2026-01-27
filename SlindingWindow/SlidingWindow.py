@@ -227,15 +227,15 @@
 
 # Approach: First calculate the sum of the first k elements. Then slide the window by adding the next element and removing the leftmost element. Track the maximum window sum and divide by k at the end.
 # Complexity Analysis: Time: O(n)   Space: O(1)
-class Solution:
-    def findMaxAverage(self, nums, k):
-        windowSum = sum(nums[:k])
-        maxSum = windowSum
-        for i in range(k, len(nums)):
-            windowSum += nums[i]
-            windowSum -= nums[i - k]
-            maxSum = max(maxSum, windowSum)
-        return maxSum / k
+# class Solution:
+#     def findMaxAverage(self, nums, k):
+#         windowSum = sum(nums[:k])
+#         maxSum = windowSum
+#         for i in range(k, len(nums)):
+#             windowSum += nums[i]
+#             windowSum -= nums[i - k]
+#             maxSum = max(maxSum, windowSum)
+#         return maxSum / k
 # Example Walkthrough: nums = [1,12,-5,-6,50,3], k = 4
 # Initial window [1,12,-5,-6] → sum = 2
 # Slide → [12,-5,-6,50] → sum = 51 (max)
