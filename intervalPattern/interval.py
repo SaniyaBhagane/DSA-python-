@@ -32,3 +32,17 @@ class Solution:
 # Compare [1,3] and [2,6] → overlap → merge → [1,6]
 # [8,10] and [15,18] → no overlap
 # Result: [[1,6],[8,10],[15,18]]
+
+# Approach: If intervals are sorted by start time, overlapping intervals will appear next to each other. We iterate once, merging when the current interval overlaps with the last merged one.
+# Complexity: Time: O(n log n)  Space: O(n)
+class Solution:
+    def merge(self, intervals):
+        intervals.sort(key=lambda x: x[0])
+        merged = [intervals[0]]
+        for start, end in intervals[1:]:
+            last_end = merged[-1][1]
+            if start <= last_end:              # overlap
+                merged[-1][1] = max(last_end, end)
+            else:                              # no overlap
+                merged.append([start, end])
+        return merged
