@@ -46,3 +46,11 @@ class Solution:
             else:                              # no overlap
                 merged.append([start, end])
         return merged
+# Example Walkthrough
+# Input: [[1,3],[2,6],[8,10],[15,18]]
+# After sorting: [[1,3],[2,6],[8,10],[15,18]]
+# Current	Last Merged	Action
+# [2,6]	[1,3]	overlap → merge → [1,6]
+# [8,10]	[1,6]	no overlap → add
+# [15,18]	[8,10]	no overlap → add
+# Output: [[1,6],[8,10],[15,18]]
