@@ -136,3 +136,38 @@ class Solution:
 # Free days:
 # Days: 1, 4, 8, 9, 10
 # Count = 5
+
+# Approach 2: First, sort and merge overlapping meeting intervals to avoid double counting. Then count free days before the first meeting, between merged meetings, and after the last meeting. The sum of these gaps gives the total days without meetings.
+# Complexity: Time: O(n log n + m)  Space: O(n) where m is the number of merged intervals
+class Solution:
+    def countDays(self, days: int, meetings: List[List[int]]) -> int:
+        meetings.sort(key=lambda x: x[0])
+        # Step 1: Merge meetings
+        res = [meetings[0]]
+        for i in range(1, len(meetings)):
+            start, end = meetings[i]
+            last_end = res[-1][1]
+            if start <= last_end:
+                res[-1][1] = max(last_end, end)
+            else:
+                res.append([start, end])
+        # Step 2: Count free days
+        gap = 0
+        # Days before first meeting
+        gap += res[0][0] - 1
+        # Days between meetings
+        for i in range(1, len(res)):
+            gap += res[i][0] - res[i - 1][1] - 1
+        # Days after last meeting
+        gap += days - res[-1][1]        
+        return gap
+# Example Walkthrough
+# days = 10
+# meetings = [[2,3],[5,7]]
+# After merging:
+# [[2,3],[5,7]]
+# Free days:
+# Before first meeting → day 1 → 1
+# Between meetings → day 4 → 1
+# After last meeting → days 8,9,10 → 3
+# ✅ Total free days = 5
