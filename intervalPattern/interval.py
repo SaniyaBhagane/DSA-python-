@@ -56,3 +56,26 @@
 # Output: [[1,6],[8,10],[15,18]]
 
 # -------------------------------------------------------------------------------------------------------------------------------
+# 986. Interval List Intersections
+# https://leetcode.com/problems/interval-list-intersections/description/
+# Approach: For each interval in the first list, check it against every interval in the second list. If the two intervals overlap, compute their intersection and add it to the result. Return all such intersections.
+# Complexity: Time: O(n × m)  Space: O(1)
+class Solution:
+    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+        res = []
+        for i in range(len(firstList)):
+            s1, e1 = firstList[i]
+            for j in range(len(secondList)):
+                s2, e2 = secondList[j]
+                # Same overlap condition
+                if e1 >= s2 and e2 >= s1:
+                    res.append([max(s1, s2), min(e1, e2)])        
+        return res
+# Example Walkthrough
+# firstList  = [[0,2],[5,10]]
+# secondList = [[1,5],[8,12]]
+# [0,2] ∩ [1,5] → [1,2]
+# [0,2] ∩ [8,12] → no overlap
+# [5,10] ∩ [1,5] → [5,5]
+# [5,10] ∩ [8,12] → [8,10]
+# Result: [[1,2], [5,5], [8,10]]
