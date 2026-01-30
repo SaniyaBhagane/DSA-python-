@@ -108,3 +108,31 @@
 # [13,23]	[15,24]	yes	[15,23]
 # [24,25]	[15,24]	yes	[24,24]
 # [24,25]	[25,26]	yes	[25,25]
+
+# -------------------------------------------------------------------------------------------------------------------------
+# 3169. Count days without Interval
+# https://leetcode.com/problems/count-days-without-interval/description/
+# Approach: Create an array representing each day and mark days that fall within any meeting. After marking all meetings, count how many days remain unmarked. Those unmarked days are the days without meetings.
+# Complexity: Time: O(n + d)  Space: O(d) where d is the range of days
+class Solution:
+    def countDays(self, days: int, meetings: List[List[int]]) -> int:
+        busy = [False] * (days + 1)   # 1-based indexing
+        # Mark meeting days
+        for start, end in meetings:
+            for d in range(start, end + 1):
+                busy[d] = True
+        # Count free days
+        free_days = 0
+        for d in range(1, days + 1):
+            if not busy[d]:
+                free_days += 1        
+        return free_days
+# Example Walkthrough
+# days = 10
+# meetings = [[2,3], [5,7]]
+# Marked days:
+# Day:   1 2 3 4 5 6 7 8 9 10
+# Busy:  F T T F T T T F F F
+# Free days:
+# Days: 1, 4, 8, 9, 10
+# Count = 5
