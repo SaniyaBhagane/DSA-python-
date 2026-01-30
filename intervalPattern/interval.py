@@ -82,22 +82,22 @@
 
 # Approach 2: Use two pointers to traverse both interval lists. If two intervals overlap, add their intersection.Move the pointer of the interval that ends first to find the next possible overlap.
 # Complexity: Time: O(n + m)  Space: O(1)
-class Solution:
-    def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
-        i, j = 0, 0
-        res = []
-        while i < len(firstList) and j < len(secondList):
-            s1, e1 = firstList[i]
-            s2, e2 = secondList[j]
-            # Check overlap
-            if e1 >= s2 and e2 >= s1:
-                res.append([max(s1, s2), min(e1, e2)])
-            # Move the pointer of the interval that ends first
-            if e1 < e2:
-                i += 1
-            else:
-                j += 1
-        return res
+# class Solution:
+#     def intervalIntersection(self, firstList: List[List[int]], secondList: List[List[int]]) -> List[List[int]]:
+#         i, j = 0, 0
+#         res = []
+#         while i < len(firstList) and j < len(secondList):
+#             s1, e1 = firstList[i]
+#             s2, e2 = secondList[j]
+#             # Check overlap
+#             if e1 >= s2 and e2 >= s1:
+#                 res.append([max(s1, s2), min(e1, e2)])
+#             # Move the pointer of the interval that ends first
+#             if e1 < e2:
+#                 i += 1
+#             else:
+#                 j += 1
+#         return res
 # Example Walkthrough
 # firstList  = [[0,2],[5,10],[13,23],[24,25]]
 # secondList = [[1,5],[8,12],[15,24],[25,26]]
