@@ -172,4 +172,58 @@ class Solution:
 # After last meeting → days 8,9,10 → 3
 # ✅ Total free days = 5
 
-# ----------------------------------------------------------------------------------------------------------------------------
+# -----------------------------------------------------------------------------------------------------------------------
+# 57. Insert Interval
+# https://leetcode.com/problems/insert-interval/description/
+# Approach: Insert the new interval into the list, then sort all intervals by start time. After sorting, iterate through the intervals and merge any overlapping ones by comparing the current interval with the last merged interval, producing the final merged list.
+# Complexity: Time: O(n log n)  Space: O(n)
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        # Step 1: add new interval
+        intervals.append(newInterval)
+        # Step 2: sort intervals
+        intervals.sort(key=lambda x: x[0])
+        # Step 3: merge intervals
+        res = []
+        for interval in intervals:
+            if not res or interval[0] > res[-1][1]:
+                res.append(interval)
+            else:
+                res[-1][1] = max(res[-1][1], interval[1])        
+        return res
+# Walkthrough Example
+# intervals = [[1,3],[6,9]]
+# newInterval = [2,5]
+# Step 1: Add
+# [[1,3],[6,9],[2,5]]
+# Step 2: Sort
+# [[1,3],[2,5],[6,9]]
+# Step 3: Merge
+# [1,3] + [2,5] → [1,5]
+# [6,9] → no overlap
+# Result: [[1,5],[6,9]]
+
+
+# Approach: Since the intervals are already sorted and non-overlapping, scan the list once. First, add all intervals that end before the new interval starts. Then merge all overlapping intervals with the new interval by updating its start and end, and finally append the remaining intervals after it.
+# Complexity: Time: O(n)  Space: O(n)
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        res = []
+        i = 0
+        n = len(intervals)
+        # 1️⃣ intervals before newInterval
+        while i < n and intervals[i][1] < newInterval[0]:
+            res.append(intervals[i])
+            i += 1
+        # 2️⃣ overlapping intervals
+        while i < n and intervals[i][0] <= newInterval[1]:
+            newInterval[0] = min(newInterval[0], intervals[i][0])
+            newInterval[1] = max(newInterval[1], intervals[i][1])
+            i += 1
+        # add merged interval
+        res.append(newInterval)
+        # 3️⃣ intervals after newInterval
+        while i < n:
+            res.append(intervals[i])
+            i += 1
+        return res
