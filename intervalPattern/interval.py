@@ -227,3 +227,18 @@ class Solution:
             res.append(intervals[i])
             i += 1
         return res
+# Example Walkthrough (Step-by-Step)
+# Input
+# intervals = [[1,3],[6,9]]
+# newInterval = [2,5]
+# Phase 1: Before newInterval
+# [1,3] → 3 < 2 ❌ → stop
+# res = []
+# Phase 2: Overlap
+# [1,3] overlaps [2,5]
+# newInterval → [1,5]
+# [6,9] does NOT overlap → stop
+# res = [[1,5]]
+# Phase 3: After newInterval
+# add [6,9]
+# Output: [[1,5],[6,9]]
