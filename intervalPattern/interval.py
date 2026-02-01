@@ -242,21 +242,16 @@ class Solution:
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         res = []
-        i = 0
-        n = len(intervals)
-        # 1️⃣ intervals before newInterval
-        while i < n and intervals[i][1] < newInterval[0]:
+        i, n = 0, len(intervals)
+        while i < n and intervals[i][1] < newInterval[0]:   # 1️ intervals before newInterval
             res.append(intervals[i])
             i += 1
-        # 2️⃣ overlapping intervals
-        while i < n and intervals[i][0] <= newInterval[1]:
+        while i < n and intervals[i][0] <= newInterval[1]:   # 2️ overlapping intervals
             newInterval[0] = min(newInterval[0], intervals[i][0])
             newInterval[1] = max(newInterval[1], intervals[i][1])
             i += 1
-        # add merged interval
-        res.append(newInterval)
-        # 3️⃣ intervals after newInterval
-        while i < n:
+        res.append(newInterval)  # add merged interval
+        while i < n: # 3️ intervals after newInterval
             res.append(intervals[i])
             i += 1
         return res
@@ -265,13 +260,11 @@ class Solution:
 # intervals = [[1,3],[6,9]]
 # newInterval = [2,5]
 # Phase 1: Before newInterval
-# [1,3] → 3 < 2 ❌ → stop
-# res = []
+# [1,3] → 3 < 2  → stop  res = []
 # Phase 2: Overlap
 # [1,3] overlaps [2,5]
 # newInterval → [1,5]
 # [6,9] does NOT overlap → stop
 # res = [[1,5]]
-# Phase 3: After newInterval
-# add [6,9]
+# Phase 3: After newInterval: add [6,9]
 # Output: [[1,5],[6,9]]
