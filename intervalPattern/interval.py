@@ -137,6 +137,39 @@ class Solution:
 # Days: 1, 4, 8, 9, 10
 # Count = 5
 
+# Approach: Sort all meeting intervals by start day. Merge overlapping intervals and calculate the total number of days occupied by meetings.Subtract the occupied days from the total number of days to get days without meetings.
+# Complexity: Time: O(n log n)  Space: O(1)
+class Solution:
+    def countDays(self, days: int, meetings: List[List[int]]) -> int:
+        meetings.sort()
+        used_days = 0
+        start, end = meetings[0]
+        for i in range(1, len(meetings)):
+            s, e = meetings[i]
+            if s <= end:           # overlapping meetings
+                end = max(end, e)
+            else:                  # non-overlapping
+                used_days += end - start + 1
+                start, end = s, e
+        # add last merged interval
+        used_days += end - start + 1        
+        return days - used_days
+# Example Walkthrough
+# Input
+# days = 10
+# meetings = [[1,3],[2,5],[7,7]]
+# Step 1: Sort
+# [[1,3],[2,5],[7,7]]
+# Step 2: Merge Intervals
+# Merge [1,3] & [2,5] → [1,5]
+# Days used = 5 - 1 + 1 = 5
+# [7,7] → single day
+# Days used = 1
+# Total used days = 6
+# Step 3: Count Free Days
+# Free days = 10 - 6 = 4
+# Output: 4
+
 # Approach 2: First, sort and merge overlapping meeting intervals to avoid double counting. Then count free days before the first meeting, between merged meetings, and after the last meeting. The sum of these gaps gives the total days without meetings.
 # Complexity: Time: O(n log n + m)  Space: O(n) where m is the number of merged intervals
 class Solution:
