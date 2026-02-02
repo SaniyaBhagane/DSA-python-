@@ -301,15 +301,11 @@ class Solution:
 # Input: intervals = [[1,4],[3,6],[2,8]]
 # Interval [1,4]
 # Compared with [3,6] → 3 ≤ 1 
-# Compared with [2,8] → 2 ≤ 1 
-# NOT covered
+# Compared with [2,8] → 2 ≤ 1  NOT covered
 # Interval [3,6]
-# Compared with [2,8] → 2 ≤ 3 AND 8 ≥ 6 ✅
-# Covered
+# Compared with [2,8] → 2 ≤ 3 AND 8 ≥ 6  Covered
 # Interval [2,8]
-# No interval fully covers it
-# NOT covered
-# Correct Result
+# No interval fully covers it  NOT covered
 # Intervals remaining: [1,4], [2,8]
 # Output: 2
 
