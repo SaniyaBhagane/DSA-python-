@@ -275,3 +275,34 @@ class Solution:
 # Phase 3: After newInterval
 # add [6,9]
 # Output: [[1,5],[6,9]]
+
+# -----------------------------------------------------------------------------------
+# 1288. Remove Covered Intervals
+# https://leetcode.com/problems/remove-covered-intervals/description/
+# Approach: For each interval, check whether it is completely covered by any other interval. If an interval is not covered, count it. Finally, return the count of non-covered intervals.
+# Complexity: Time: O(n²)  Space: O(1)
+class Solution:
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        count = 0
+        for i in range(len(intervals)):
+            c, d = intervals[i]
+            isCovered = False
+            for j in range(len(intervals)):
+                if i == j:
+                    continue
+                a, b = intervals[j]
+                if a <= c and b >= d:
+                    isCovered = True
+                    break
+            if not isCovered:
+                count += 1                
+        return count
+# Example Walkthrough
+# Input: intervals = [[1,4],[3,6],[2,8]]
+# Step-by-step
+# Interval [1,4]
+# Covered by [2,8] → ❌ not counted
+# Interval [3,6]
+# Covered by [2,8] → ❌ not counted
+# Interval [2,8]
+# Not covered by any → ✅ counted
