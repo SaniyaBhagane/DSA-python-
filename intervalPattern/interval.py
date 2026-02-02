@@ -299,14 +299,19 @@ class Solution:
         return count
 # Example Walkthrough
 # Input: intervals = [[1,4],[3,6],[2,8]]
-# Step-by-step
 # Interval [1,4]
-# Covered by [2,8] → ❌ not counted
+# Compared with [3,6] → 3 ≤ 1 
+# Compared with [2,8] → 2 ≤ 1 
+# NOT covered
 # Interval [3,6]
-# Covered by [2,8] → ❌ not counted
+# Compared with [2,8] → 2 ≤ 3 AND 8 ≥ 6 ✅
+# Covered
 # Interval [2,8]
-# Not covered by any → ✅ counted
-# Output = 1
+# No interval fully covers it
+# NOT covered
+# Correct Result
+# Intervals remaining: [1,4], [2,8]
+# Output: 2
 
 # Approach: Sort intervals by start time (and by end time descending for ties). Then iterate through the sorted list, if the current interval’s end is ≤ maxEnd, it is covered; otherwise, count it and update maxEnd.
 # Complexity: Time: O(n log n)  Space: O(1)
