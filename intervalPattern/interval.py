@@ -114,19 +114,19 @@
 # https://leetcode.com/problems/count-days-without-interval/description/
 # Approach: Create an array representing each day and mark days that fall within any meeting. After marking all meetings, count how many days remain unmarked. Those unmarked days are the days without meetings.
 # Complexity: Time: O(n + d)  Space: O(d) where d is the range of days
-class Solution:
-    def countDays(self, days: int, meetings: List[List[int]]) -> int:
-        busy = [False] * (days + 1)   # 1-based indexing
-        # Mark meeting days
-        for start, end in meetings:
-            for d in range(start, end + 1):
-                busy[d] = True
-        # Count free days
-        free_days = 0
-        for d in range(1, days + 1):
-            if not busy[d]:
-                free_days += 1        
-        return free_days
+# class Solution:
+#     def countDays(self, days: int, meetings: List[List[int]]) -> int:
+#         busy = [False] * (days + 1)   # 1-based indexing
+#         # Mark meeting days
+#         for start, end in meetings:
+#             for d in range(start, end + 1):
+#                 busy[d] = True
+#         # Count free days
+#         free_days = 0
+#         for d in range(1, days + 1):
+#             if not busy[d]:
+#                 free_days += 1        
+#         return free_days
 # Example Walkthrough
 # days = 10
 # meetings = [[2,3], [5,7]]
@@ -139,21 +139,21 @@ class Solution:
 
 # Approach: Sort all meeting intervals by start day. Merge overlapping intervals and calculate the total number of days occupied by meetings.Subtract the occupied days from the total number of days to get days without meetings.
 # Complexity: Time: O(n log n)  Space: O(1)
-class Solution:
-    def countDays(self, days: int, meetings: List[List[int]]) -> int:
-        meetings.sort()
-        used_days = 0
-        start, end = meetings[0]
-        for i in range(1, len(meetings)):
-            s, e = meetings[i]
-            if s <= end:           # overlapping meetings
-                end = max(end, e)
-            else:                  # non-overlapping
-                used_days += end - start + 1
-                start, end = s, e
-        # add last merged interval
-        used_days += end - start + 1        
-        return days - used_days
+# class Solution:
+#     def countDays(self, days: int, meetings: List[List[int]]) -> int:
+#         meetings.sort()
+#         used_days = 0
+#         start, end = meetings[0]
+#         for i in range(1, len(meetings)):
+#             s, e = meetings[i]
+#             if s <= end:           # overlapping meetings
+#                 end = max(end, e)
+#             else:                  # non-overlapping
+#                 used_days += end - start + 1
+#                 start, end = s, e
+#         # add last merged interval
+#         used_days += end - start + 1        
+#         return days - used_days
 # Example Walkthrough
 # Input
 # days = 10
@@ -172,28 +172,28 @@ class Solution:
 
 # Approach 2: First, sort and merge overlapping meeting intervals to avoid double counting. Then count free days before the first meeting, between merged meetings, and after the last meeting. The sum of these gaps gives the total days without meetings.
 # Complexity: Time: O(n log n + m)  Space: O(n) where m is the number of merged intervals
-class Solution:
-    def countDays(self, days: int, meetings: List[List[int]]) -> int:
-        meetings.sort(key=lambda x: x[0])
-        # Step 1: Merge meetings
-        res = [meetings[0]]
-        for i in range(1, len(meetings)):
-            start, end = meetings[i]
-            last_end = res[-1][1]
-            if start <= last_end:
-                res[-1][1] = max(last_end, end)
-            else:
-                res.append([start, end])
-        # Step 2: Count free days
-        gap = 0
-        # Days before first meeting
-        gap += res[0][0] - 1
-        # Days between meetings
-        for i in range(1, len(res)):
-            gap += res[i][0] - res[i - 1][1] - 1
-        # Days after last meeting
-        gap += days - res[-1][1]        
-        return gap
+# class Solution:
+#     def countDays(self, days: int, meetings: List[List[int]]) -> int:
+#         meetings.sort(key=lambda x: x[0])
+#         # Step 1: Merge meetings
+#         res = [meetings[0]]
+#         for i in range(1, len(meetings)):
+#             start, end = meetings[i]
+#             last_end = res[-1][1]
+#             if start <= last_end:
+#                 res[-1][1] = max(last_end, end)
+#             else:
+#                 res.append([start, end])
+#         # Step 2: Count free days
+#         gap = 0
+#         # Days before first meeting
+#         gap += res[0][0] - 1
+#         # Days between meetings
+#         for i in range(1, len(res)):
+#             gap += res[i][0] - res[i - 1][1] - 1
+#         # Days after last meeting
+#         gap += days - res[-1][1]        
+#         return gap
 # Example Walkthrough
 # days = 10
 # meetings = [[2,3],[5,7]]
@@ -210,20 +210,20 @@ class Solution:
 # https://leetcode.com/problems/insert-interval/description/
 # Approach: Insert the new interval into the list, then sort all intervals by start time. After sorting, iterate through the intervals and merge any overlapping ones by comparing the current interval with the last merged interval, producing the final merged list.
 # Complexity: Time: O(n log n)  Space: O(n)
-class Solution:
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        # Step 1: add new interval
-        intervals.append(newInterval)
-        # Step 2: sort intervals
-        intervals.sort(key=lambda x: x[0])
-        # Step 3: merge intervals
-        res = []
-        for interval in intervals:
-            if not res or interval[0] > res[-1][1]:
-                res.append(interval)
-            else:
-                res[-1][1] = max(res[-1][1], interval[1])        
-        return res
+# class Solution:
+#     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+#         # Step 1: add new interval
+#         intervals.append(newInterval)
+#         # Step 2: sort intervals
+#         intervals.sort(key=lambda x: x[0])
+#         # Step 3: merge intervals
+#         res = []
+#         for interval in intervals:
+#             if not res or interval[0] > res[-1][1]:
+#                 res.append(interval)
+#             else:
+#                 res[-1][1] = max(res[-1][1], interval[1])        
+#         return res
 # Walkthrough Example
 # intervals = [[1,3],[6,9]]
 # newInterval = [2,5]
@@ -239,27 +239,27 @@ class Solution:
 
 # Approach: Since the intervals are already sorted and non-overlapping, scan the list once. First, add all intervals that end before the new interval starts. Then merge all overlapping intervals with the new interval by updating its start and end, and finally append the remaining intervals after it.
 # Complexity: Time: O(n)  Space: O(n)
-class Solution:
-    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
-        res = []
-        i = 0
-        n = len(intervals)
-        # 1️ intervals before newInterval
-        while i < n and intervals[i][1] < newInterval[0]:
-            res.append(intervals[i])
-            i += 1
-        # 2️ overlapping intervals
-        while i < n and intervals[i][0] <= newInterval[1]:
-            newInterval[0] = min(newInterval[0], intervals[i][0])
-            newInterval[1] = max(newInterval[1], intervals[i][1])
-            i += 1
-        # add merged interval
-        res.append(newInterval)
-        # 3️ intervals after newInterval
-        while i < n:
-            res.append(intervals[i])
-            i += 1
-        return res
+# class Solution:
+    # def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+    #     res = []
+    #     i = 0
+    #     n = len(intervals)
+    #     # 1️ intervals before newInterval
+    #     while i < n and intervals[i][1] < newInterval[0]:
+    #         res.append(intervals[i])
+    #         i += 1
+    #     # 2️ overlapping intervals
+    #     while i < n and intervals[i][0] <= newInterval[1]:
+    #         newInterval[0] = min(newInterval[0], intervals[i][0])
+    #         newInterval[1] = max(newInterval[1], intervals[i][1])
+    #         i += 1
+    #     # add merged interval
+    #     res.append(newInterval)
+    #     # 3️ intervals after newInterval
+    #     while i < n:
+    #         res.append(intervals[i])
+    #         i += 1
+    #     return res
 # Example Walkthrough (Step-by-Step)
 # Input
 # intervals = [[1,3],[6,9]]
@@ -281,22 +281,22 @@ class Solution:
 # https://leetcode.com/problems/remove-covered-intervals/description/
 # Approach: For each interval, check whether it is completely covered by any other interval. If an interval is not covered, count it. Finally, return the count of non-covered intervals.
 # Complexity: Time: O(n²)  Space: O(1)
-class Solution:
-    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
-        count = 0
-        for i in range(len(intervals)):
-            c, d = intervals[i]
-            isCovered = False
-            for j in range(len(intervals)):
-                if i == j:
-                    continue
-                a, b = intervals[j]
-                if a <= c and b >= d:
-                    isCovered = True
-                    break
-            if not isCovered:
-                count += 1                
-        return count
+# class Solution:
+#     def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+#         count = 0
+#         for i in range(len(intervals)):
+#             c, d = intervals[i]
+#             isCovered = False
+#             for j in range(len(intervals)):
+#                 if i == j:
+#                     continue
+#                 a, b = intervals[j]
+#                 if a <= c and b >= d:
+#                     isCovered = True
+#                     break
+#             if not isCovered:
+#                 count += 1                
+#         return count
 # Example Walkthrough
 # Input: intervals = [[1,4],[3,6],[2,8]]
 # Interval [1,4]
@@ -311,18 +311,18 @@ class Solution:
 
 # Approach: Sort intervals by start time (and by end time descending for ties). Then iterate through the sorted list, if the current interval’s end is ≤ maxEnd, it is covered; otherwise, count it and update maxEnd.
 # Complexity: Time: O(n log n)  Space: O(1)
-class Solution:
-    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
-        # Sort by start ↑, end ↓
-        intervals.sort(key=lambda x: (x[0], -x[1]))
-        count = 0
-        maxEnd = 0
-        for start, end in intervals:
-            if end > maxEnd:
-                count += 1
-                maxEnd = end
-            # else: covered, skip
-        return count
+# class Solution:
+#     def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+#         # Sort by start ↑, end ↓
+#         intervals.sort(key=lambda x: (x[0], -x[1]))
+#         count = 0
+#         maxEnd = 0
+#         for start, end in intervals:
+#             if end > maxEnd:
+#                 count += 1
+#                 maxEnd = end
+#             # else: covered, skip
+#         return count
 # Example Walkthrough
 # Input: intervals = [[1,4],[3,6],[2,8]]
 # After Sorting
