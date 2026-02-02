@@ -306,3 +306,4 @@ class Solution:
 # Covered by [2,8] → ❌ not counted
 # Interval [2,8]
 # Not covered by any → ✅ counted
+# Output = 1
