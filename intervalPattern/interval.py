@@ -1,5 +1,5 @@
 # 57. Merge Intervals
-# https://leetcode.com/problems/merge-intervals-description/
+# https://leetcode.com/problems/merge-intervals/description/
 # Approach: Compare every interval with every other interval and merge any overlapping ones. Repeat this process until no more overlaps remain.
 # Complexity: Time: O(n²)  Space: O(n)
 # class Solution:
