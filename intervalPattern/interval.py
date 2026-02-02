@@ -307,3 +307,27 @@ class Solution:
 # Interval [2,8]
 # Not covered by any → ✅ counted
 # Output = 1
+
+# Approach: Sort intervals by start time (and by end time descending for ties). Then iterate through the sorted list, if the current interval’s end is ≤ maxEnd, it is covered; otherwise, count it and update maxEnd.
+# Complexity: Time: O(n log n)  Space: O(1)
+class Solution:
+    def removeCoveredIntervals(self, intervals: List[List[int]]) -> int:
+        # Sort by start ↑, end ↓
+        intervals.sort(key=lambda x: (x[0], -x[1]))
+        count = 0
+        maxEnd = 0
+        for start, end in intervals:
+            if end > maxEnd:
+                count += 1
+                maxEnd = end
+            # else: covered, skip
+        return count
+# Example Walkthrough
+# Input: intervals = [[1,4],[3,6],[2,8]]
+# After Sorting
+# [[1,4],[2,8],[3,6]]
+# Scan
+# [1,4] → end 4 > 0 → count = 1, maxEnd = 4
+# [2,8] → end 8 > 4 → count = 2, maxEnd = 8
+# [3,6] → end 6 ≤ 8 → covered → skip
+# Output = 2
