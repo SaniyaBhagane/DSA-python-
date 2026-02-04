@@ -341,7 +341,6 @@
 class MyCalendarTwo:
     def __init__(self):
         self.bookings = []
-
     def book(self, start: int, end: int) -> bool:
         # Try every time point in the new interval
         for t in range(start, end):
