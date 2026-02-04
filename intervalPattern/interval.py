@@ -332,3 +332,43 @@
 # [2,8] → end 8 > 4 → count = 2, maxEnd = 8
 # [3,6] → end 6 ≤ 8 → covered → skip
 # Output = 2
+
+#-----------------------------------------------------------------------------------------------------------------------
+# 731. My Calander II
+# https://leetcode.com/problems/my-calendar-ii/description/
+# Approach: For every new booking, simulate each time unit in its range and count how many existing bookings already cover that time. If at any point the overlap count reaches two (meaning adding this booking would create a triple booking), reject it. Otherwise, add the booking to the list.
+# Complexity: Time: O(n * d)  Space: O(n) where d is the average duration of bookings
+class MyCalendarTwo:
+    def __init__(self):
+        self.bookings = []
+
+    def book(self, start: int, end: int) -> bool:
+        # Try every time point in the new interval
+        for t in range(start, end):
+            overlapCount = 0
+            for s, e in self.bookings:
+                if s <= t < e:
+                    overlapCount += 1
+                    if overlapCount == 2:
+                        return False #triple booking detected
+        self.bookings.append([start, end])
+        return True
+# Example Walkthrough
+# Operations
+# book(10, 20) → True
+# book(15, 25) → True
+# book(17, 22) → False
+# Step-by-step
+# book(10, 20)
+# No existing bookings
+# Added safely
+# book(15, 25)
+# Overlaps with [10,20] → overlap count = 1
+# Double booking allowed
+# Added safely
+# book(17, 22)
+# At time t = 17:
+# [10,20] overlaps
+# [15,25] overlaps
+# overlap count = 2 → adding new makes 3
+# Rejected
