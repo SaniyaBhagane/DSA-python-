@@ -371,3 +371,23 @@
 # [15,25] overlaps
 # overlap count = 2 → adding new makes 3
 # Rejected
+
+# Approach: Maintain two lists: one for all bookings and one for double-booked intervals. Before adding a new booking, check if it overlaps with any double-booked interval (triple booking). If safe, add overlaps with existing bookings and then store the new booking.
+# Complexity: Time: O(n²)  Space: O(n)
+class MyCalendarTwo:
+    def __init__(self):
+        self.bookings = []
+        self.overlaps = []
+    def book(self, start: int, end: int) -> bool:
+        # 1️⃣ Check if this causes a triple booking
+        for s, e in self.overlaps:
+            if start < e and end > s:
+                return False
+        # 2️⃣ Record new overlaps with existing bookings
+        for s, e in self.bookings:
+            if start < e and end > s:
+                self.overlaps.append([max(start, s), min(end, e)])
+        # 3️⃣ Add booking
+        self.bookings.append([start, end])
+        return True
+# 
